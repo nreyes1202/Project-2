@@ -1,0 +1,25 @@
+{
+  "name": "project-2",
+  "version": "1.0.0",
+  "description": "RPG Game",
+  "main": "\u001b[D\u001b[D\u001b[D\u001bserver.js)",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nreyes1202/Project-2.git"
+  },
+  "keywords": [
+    "rpg",
+    "game",
+    "node",
+    "project"
+  ],
+  "author": "Nilsen Reyes, Derrick Hepworth, Jean Peel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nreyes1202/Project-2/issues"
+  },
+  "homepage": "https://github.com/nreyes1202/Project-2#readme"
+}
