@@ -1,4 +1,4 @@
--- Drops the todolist if it exists currently --
+-- Drops the charactersDB if it exists currently --
 DROP DATABASE IF EXISTS characters;
--- Creates the "todolist" database --
+-- Creates the "characters" database --
 CREATE DATABASE characters;
