@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/nreyes1202/Project-2#readme",
   "dependencies": {
-    "ejs": "^3.0.2"
+    "ejs": "^3.0.2",
+    "express": "^4.17.1"
   }
 }
