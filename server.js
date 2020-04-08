@@ -11,7 +11,7 @@ var app = express();
 var PORT = process.env.PORT || 8000;
 
 // Requiring our models for syncing
-var db = require("./models");
+var db = require("./models/character.js");
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
@@ -29,3 +29,4 @@ db.sequelize.sync().then(function() {
     console.log("App listening on PORT " + PORT);
   });
 });
+
