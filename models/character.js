@@ -10,7 +10,7 @@ var sequelize = require("../config/config.js");
 var Character = sequelize.define("character", {
   // the username (a string)
   username: Sequelize.STRING,
-  highScore: Sequelize.INTEGER,
+  highScore: Sequelize.INTEGER
 });
 
 // Syncs with DB
