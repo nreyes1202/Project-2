@@ -133,7 +133,7 @@ function create ()
     this.physics.add.collider(player, platforms);
 
     // c tiles
-    platforms.create(32, 508, 'cTileSq').setScale(.5);
+    platforms.create(32, 508, 'cTileSq2').setScale(.5);
     platforms.create(160, 508, 'cTileBlock').setScale(.5);
     platforms.create(96, 508, 'cTileBroke').setScale(.5);
     platforms.create(224, 508, 'cTileSq2').setScale(.5);
@@ -173,25 +173,25 @@ function create ()
     platforms.create(544, 540, 'cTileBroke').setScale(.5);
     platforms.create(480, 540, 'cTileSq2').setScale(.5);
     platforms.create(416, 540, 'cTileBroke').setScale(.5);
-    platforms.create(352, 540, 'cTileBroke').setScale(.5);
+    platforms.create(352, 540, 'cTileBlock').setScale(.5);
     platforms.create(736, 540, 'cTileSq').setScale(.5);
     platforms.create(800, 540, 'cTileBlock').setScale(.5);
     platforms.create(864, 540, 'cTileBroke').setScale(.5);
-    platforms.create(928, 540, 'cTileSq2').setScale(.5);
+    platforms.create(928, 540, 'cTileBlock').setScale(.5);
 
     // a tiles
     platforms.create(672, 476, 'aTileLbot').setScale(.5);
     platforms.create(736, 476, 'aTileSq2').setScale(.5);
     platforms.create(800, 476, 'aTileRtop').setScale(.5);
     platforms.create(864, 476, 'aTileLtop').setScale(.5);
-    platforms.create(928, 476, 'aTileSq').setScale(.5);
+    platforms.create(928, 476, 'aTileSq2').setScale(.5);
 
     // c post
     platforms.create(928, 412, 'cBridgePost').setScale(.5);
     platforms.create(928, 348, 'cBridgePost').setScale(.5);
     platforms.create(928, 284, 'cBridgePost').setScale(.5);
 
-    // a tiles
+    // e tiles
     platforms.create(736, 220, 'eTileSq').setScale(.5);
     platforms.create(800, 220, 'eTileBroken').setScale(.5);
     platforms.create(864, 220, 'eTileSq').setScale(.5);
