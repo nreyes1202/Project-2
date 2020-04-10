@@ -9,8 +9,15 @@ var sequelize = require("../config/config.js");
 // Creates a "Character" model that matches up with DB
 var Character = sequelize.define("character", {
   // the username (a string)
-  username: Sequelize.STRING,
-  highScore: Sequelize.INTEGER
+  id: {
+    autoIncrement: true,
+    primaryKey: true,
+    type: Sequelize.INTEGER
+},
+  username: {type: Sequelize.STRING
+  },
+  highScore: {type: Sequelize.INTEGER
+  }
 });
 
 // Syncs with DB
