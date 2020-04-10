@@ -16,9 +16,11 @@ body{
     height: 100px;
     margin: auto !important;
     text-align: center;
+    color: green;
 }
 h1{
     text-align: center;
+    color: red;
 }
 
 

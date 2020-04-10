@@ -7,7 +7,7 @@ $(document).ready(function () {
     var userSprite = '';
 
     $("#jean").click(function () {
-        console.log('Button click "Jean" happened');
+        // console.log('Button click "Jean" happened');
 
         var userSprite = $(this).attr('id');
 
@@ -16,7 +16,7 @@ $(document).ready(function () {
     });
 
     $("#nilsen").click(function () {
-        console.log('Button click "Nilsen" happened');
+        // console.log('Button click "Nilsen" happened');
 
         var userSprite = $(this).attr('id');
 
@@ -25,7 +25,7 @@ $(document).ready(function () {
     });
 
     $("#derrick").click(function () {
-        console.log('Button click "Derrick" happened');
+        // console.log('Button click "Derrick" happened');
 
         var userSprite = $(this).attr('id');
 
@@ -37,7 +37,7 @@ $(document).ready(function () {
     var userImg = '';
 
     $("#imgMountain").click(function () {
-        console.log('Button click "Mountain" happened');
+        // console.log('Button click "Mountain" happened');
 
         var userImg = $(this).attr('id');
 
@@ -46,7 +46,7 @@ $(document).ready(function () {
     });
 
     $("#imgForest").click(function () {
-        console.log('Button click "Forest" happened');
+        // console.log('Button click "Forest" happened');
 
         var userImg = $(this).attr('id');
 
@@ -54,7 +54,7 @@ $(document).ready(function () {
     });
 
     $("#imgPostApocalyptic").click(function () {
-        console.log('Button click "Post Apocalyptic" happened');
+        // console.log('Button click "Post Apocalyptic" happened');
 
         var userImg = $(this).attr('id');
 
