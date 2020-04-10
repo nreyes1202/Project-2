@@ -1,5 +1,4 @@
 // Dependencies
-// =============================================================
 
 // Sequelize (capital) references the standard library
 var Sequelize = require("sequelize");
