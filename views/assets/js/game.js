@@ -41,34 +41,39 @@ function preload ()
 
 }
 
+// var jean = (
+//     this.add.image(960, 540, 'warrior');
+// )
+
+// var nilsen = (
+//     this.add.image(960, 540, 'alien');
+// )
+
+// var derrick = (
+//     this.add.image(960, 540, 'samurai');
+// )
+
+// var imgMountain = (
+//     this.add.image(960, 540, 'asianMountain');
+// )
+
+// var imgForest = (
+//     this.add.image(960, 540, 'amagicForest');
+// )
+
+// var imgPostApocalyptic = (
+//     this.add.image(960, 540, 'postapoochplus');
+// )
+
+// function bkgrnd= make sense of view data
+
 function create ()
 {
+    // background image
+    this.add.image(960, 540, 'postapoochplus');
     
+    // bkgrnd();
 
-    var jean = (
-        this.add.image(960, 540, 'warrior');
-    )
-
-    var nilsen = (
-        this.add.image(960, 540, 'alien');
-    )
-
-    var derrick = (
-        this.add.image(960, 540, 'samurai');
-    )
-
-    var imgMountain = (
-        this.add.image(960, 540, 'asianMountain');
-    )
-
-    var imgForest = (
-        this.add.image(960, 540, 'amagicForest');
-    )
-
-    var imgPostApocalyptic = (
-        this.add.image(960, 540, 'postapoochplus');
-    )
-    
     platforms = this.physics.add.staticGroup();
 
     platforms.create(400, 568, 'ground').setScale(2).refreshBody();
