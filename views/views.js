@@ -6,6 +6,9 @@ $(document).ready(function () {
     //button click selector function for images/sprites
     var userSprite = '';
 
+    var asianMountain = 
+    
+
     $("#jean").click(function () {
         // console.log('Button click "Jean" happened');
 
