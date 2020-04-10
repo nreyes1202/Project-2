@@ -14,7 +14,7 @@ var Character = sequelize.define("character", {
     primaryKey: true,
     type: Sequelize.INTEGER
 },
-  username: {type: Sequelize.STRING
+  username: {type: Sequelize.TEXT
   },
   highScore: {type: Sequelize.INTEGER
   }
