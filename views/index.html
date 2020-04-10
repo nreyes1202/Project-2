@@ -1,56 +1,72 @@
 <!doctype html>
 <html lang='en'>
-    <head>
-        <!-- Required meta tags -->
-        <meta charset='utf-8'>
-        <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
 
-        <!-- Bootstrap CSS -->
-        <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
+<head>
+    <!-- Required meta tags -->
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
 
-        <!-- Linked Style Sheet & Reset etc.-->
-        <link rel='meyer-reset' type='reset' href='assets/css/reset.css'>
-        <link rel='stylesheet' href='assets/css/style.css'>
+    <!-- Bootstrap CSS -->
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
+        integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
 
-        <title>Attack of Kurt</title>
-        
-        <div id='containerHeader'>
+    <!-- Linked Style Sheet & Reset etc.-->
+    <link rel='meyer-reset' type='reset' href='assets/css/reset.css'>
+    <link rel='stylesheet' href='assets/css/style.css'>
 
-    
-    
-        </div>
+    <title>Attack of Kurt</title>
 
-    </head>
-    <body>
-        <h1>Attack of Kurt</h1>
-        <div id='containerBody'>
-
-            
-
+    <div id='containerHeader'></div>
+    <div id='containerBody'>
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
         <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM' crossorigin='anonymous'></script>
         <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
-        
-         <!--Script App Inserted etc.-->
+
+        <!--Script App Inserted etc.-->
         <script src='assets/js/game.js' charset='utf-8'></script>
         <script src='views.js'></script>
-        
-    </div>
-    </body>
-    <button type="button" id='jean' class ="btn btn-primary">Jean</button>
-    <button type="button" id='nilsen' class ="btn btn-primary">Nilsen</button>
-    <button type="button" id='derrick' class ="btn btn-primary">Derrick</button>
-    <br>
-    <button type="button" id='imgMountain' class ="btn btn-primary">Mountains</button>
-    <button type="button" id= 'imgForest' class ="btn btn-primary">Forest</button>
-    <button type="button" id= 'imgPostApocalyptic' class ="btn btn-primary">Post Apocalyptic</button>
 
-    <footer>
-        <div id='containerFooter'>
-            <script src='assets/js/main.js' charset='utf-8'></script>
-    
-    
-        </div>
-    </footer>
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    </div>
+
+</head>
+
+<body>
+    <h1>Attack of Kurt</h1>
+    <div class ="selectionBox">
+        <form>
+            <label for="fname">Name:</label><br>
+            <input type="text" id="fname" name="fname">
+        </form>
+    </div>
+
+    <div id='characterImg' class="selectionBox">
+        <h2> Choose a Character</h2>
+        <button type="button" id='jean' class="btn btn-primary">Jean</button>
+        <button type="button" id='nilsen' class="btn btn-primary">Nilsen</button>
+        <button type="button" id='derrick' class="btn btn-primary">Derrick</button>
+    </div>
+
+    <div id='bgImg' class='selectionBox'>
+        <h2> Choose a Level</h2>
+        <button type="button" id='imgMountain' class="btn btn-primary">Mountains</button>
+        <button type="button" id='imgForest' class="btn btn-primary">Forest</button>
+        <button type="button" id='imgPostApocalyptic' class="btn btn-primary">Post Apocalyptic</button>
+    </div>
+</body>
+
+<footer>
+    <div id='containerFooter'>
+        <script src='assets/js/script.js' charset='utf-8'></script>
+
+
+    </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 05343397acfc9cb9dad79a3f93453f09c3393ffc
+</footer>
+</html>
