@@ -12,6 +12,8 @@ $(document).ready(function () {
         var userSprite = $(this).attr('id');
 
         console.log("userSprite = " + userSprite);
+
+     
         
     });
 
