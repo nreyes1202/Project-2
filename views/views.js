@@ -61,6 +61,6 @@ $(document).ready(function () {
         console.log("userImg = " + userImg);
     });
 
-    module.exports = [userSprite, userSprite];
+    module.exports = [userSprite, userImg];
 
 });
