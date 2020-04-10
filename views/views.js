@@ -4,11 +4,10 @@ $(document).ready(function () {
     console.log('views.js is linked!');
 
     //button click selector function for images/sprites
-
     var userSprite = '';
 
-    $("#hugh").click(function () {
-        console.log('Button click "Hugh" happened');
+    $("#jean").click(function () {
+        console.log('Button click "Jean" happened');
 
         var userSprite = $(this).attr('id');
 
@@ -16,8 +15,8 @@ $(document).ready(function () {
         
     });
 
-    $("#elliot").click(function () {
-        console.log('Button click "Elliot" happened');
+    $("#nilsen").click(function () {
+        console.log('Button click "Nilsen" happened');
 
         var userSprite = $(this).attr('id');
 
@@ -25,6 +24,43 @@ $(document).ready(function () {
         
     });
 
-    module.exports = userSprite;
+    $("#derrick").click(function () {
+        console.log('Button click "Derrick" happened');
+
+        var userSprite = $(this).attr('id');
+
+        console.log("userSprite = " + userSprite);
+        
+    });
+
+    // Button click selector Functions-images
+    var userImg = '';
+
+    $("#imgMountain").click(function () {
+        console.log('Button click "Mountain" happened');
+
+        var userImg = $(this).attr('id');
+
+        console.log("userImg = " + userImg);
+        
+    });
+
+    $("#imgForest").click(function () {
+        console.log('Button click "Forest" happened');
+
+        var userImg = $(this).attr('id');
+
+        console.log("userImg = " + userImg);        
+    });
+
+    $("#imgPostApocalyptic").click(function () {
+        console.log('Button click "Post Apocalyptic" happened');
+
+        var userImg = $(this).attr('id');
+
+        console.log("userImg = " + userImg);
+    });
+
+    module.exports = [userSprite, userSprite];
 
 });
