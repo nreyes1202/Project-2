@@ -12,6 +12,7 @@ module.exports = function(app) {
       .then(function(dbuserName) {
         res.json(dbuserName);
       });
+      console.log(dbuserName);
   });
 
 
@@ -64,4 +65,4 @@ module.exports = function(app) {
 //         res.json(dbPost);
 //       });
 //   });
-// };
+};
