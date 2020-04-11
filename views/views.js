@@ -25,11 +25,10 @@ $(document).ready(function () {
 
 //         var userSprite = $(this).attr('id');
 
-// <<<<<<< HEAD
-// <<<<<<< HEAD
+
 //         console.log("userSprite = " + userSprite);
 
-// =======
+
 //         var playersSetup = {
 //             playersSprites : (this.physics.add.sprite(400, 270, 'warrior').setScale(.125)),
 //             playerCollider : (playerSprites.player.setCollideWorldBounds(true).setBounce(0.2)
@@ -56,7 +55,7 @@ $(document).ready(function () {
 //                 }
 //             };
         
-// =======
+
 //         // var playersSetup = {
 //         //     playersSprites : (this.physics.add.sprite(400, 270, 'warrior').setScale(.125)),
 //         //     playerCollider : (playerSprites.player.setCollideWorldBounds(true).setBounce(0.2)
@@ -83,14 +82,9 @@ $(document).ready(function () {
 //         //         }
 //         //     };
 
-// >>>>>>> c5af6014da2efdcdba34022f10ebdffbab54140c
-//         console.log("userSprite = " + userSprite + " a warrior");
-// <<<<<<< HEAD
-    
-// >>>>>>> f118665fe52691530ab0b18a47005ab656a407a4
-// =======
 
-// >>>>>>> ca7535b686f6a6d649a8103a0b532e4ae284ec5a
+//         console.log("userSprite = " + userSprite + " a warrior");
+
 //     });
 
 // $("#nilsen").click(function () {
@@ -167,54 +161,10 @@ $(document).ready(function () {
 // var userImg = '';
 // // var backgrounds = '';
 
-<<<<<<< HEAD
-// $("#imgMountain").click(function () {
-//     // console.log('Button click "Mountain" happened');
-
-//     var userImg = $(this).attr('id');
-
-//     // var backgrounds = (this.add.image(480, 270, 'asianMountain').setScale(.5));
-
-//     console.log("userImg = " + userImg);
-//     console.log(backgrounds);
-
-// });
-
-// $("#imgForest").click(function () {
-//     // console.log('Button click "Forest" happened');
-
-//     var userImg = $(this).attr('id');
-
-//     // var backgrounds = (this.add.image(480, 270, 'magicForest').setScale(.5));
-
-//     console.log("userImg = " + userImg);
-//     console.log(backgrounds);
-// });
-
-// $("#imgPostApocalyptic").click(function () {
-//     // console.log('Button click "Post Apocalyptic" happened');
-
-//     var userImg = $(this).attr('id');
-
-//     // var backgrounds = (this.add.image(480, 270, 'postApocalyptic').setScale(.5));
-
-//     console.log("userImg = " + userImg);
-//     console.log(backgrounds);
-// });
-
-// module.exports = [userSprite, backgrounds];
-
-// CREATE function in game.js 
-
-
-
-=======
-    $.get("/api/characters")
-    .then(function(data){
-        console.log(data)
-    })
+    // $.get("/api/characters")
+    // .then(function(data){
+    //     console.log(data)
+    // });
     
-});
->>>>>>> 9c007bfe4ec3c4655ff2a3e7553d48f6549f7573
 
 // READ function with findAll
