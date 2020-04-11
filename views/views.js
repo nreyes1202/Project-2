@@ -167,6 +167,7 @@ $(document).ready(function () {
 // var userImg = '';
 // // var backgrounds = '';
 
+<<<<<<< HEAD
 // $("#imgMountain").click(function () {
 //     // console.log('Button click "Mountain" happened');
 
@@ -207,5 +208,13 @@ $(document).ready(function () {
 
 
 
+=======
+    $.get("/api/characters")
+    .then(function(data){
+        console.log(data)
+    })
+    
+});
+>>>>>>> 9c007bfe4ec3c4655ff2a3e7553d48f6549f7573
 
 // READ function with findAll
