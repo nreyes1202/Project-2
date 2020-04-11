@@ -11,7 +11,7 @@ var config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 300 },
-            debug: true
+            debug: false
         }
     },
     // defines the order the the scene functions are loaded
@@ -21,6 +21,15 @@ var config = {
         update: update
     }
 };
+
+// sets up variables outside of functions
+var player;
+var stars1;
+var stars2;
+var stars3;
+var bombs;
+var platforms;
+var cursors;
 
 // starts the score function
 var score = 0;
@@ -42,14 +51,15 @@ function preload ()
     // this.load.spritesheet('dude', 'assets/images/dude.png', { frameWidth: 32, frameHeight: 48 });
 
     // backgrounds set
-    this.load.image('asianMountain', 'assets/images/backgrounds/horizontalBackgrounds/background.png');
-    this.load.image('magicForest', 'assets/images/backgrounds/magicForestBackground/background.png');
+    // this.load.image('asianMountain', 'assets/images/backgrounds/horizontalBackgrounds/background.png');
+    // this.load.image('magicForest', 'assets/images/backgrounds/magicForestBackground/background.png');
     this.load.image('postApocalyptic', 'assets/images/backgrounds/parallaxBackground/background.png');
 
     // sprite set
-    this.load.image('samurai', 'assets/images/sprites/samuraiSprite/_PNG/spriteSheet.png', { frameWidth: 1100, frameHeight: 650 });
-    this.load.image('alien', 'assets/images/sprites/aliensSprite/alien/PNG/spriteSheet.png', { frameWidth: 230, frameHeight: 398 });
-    this.load.image('warrior', 'assets/images/sprites/warriorSpriteFemale/_PNG/spriteSheet.png', { frameWidth: 2000, frameHeight: 1200 });
+    player = this.load.image('alien', 'assets/images/sprites/aliensSprite/alien/PNG/spriteSheet.png', { frameWidth: 230, frameHeight: 401 });
+    // this.load.image('samurai', 'assets/images/sprites/samuraiSprite/_PNG/spriteSheet.png', { frameWidth: 1100, frameHeight: 650 });
+    // this.load.image('alien', 'assets/images/sprites/aliensSprite/alien/PNG/spriteSheet.png', { frameWidth: 95, frameHeight: 171 });
+    // this.load.image('warrior', 'assets/images/sprites/warriorSpriteFemale/_PNG/spriteSheet.png', { frameWidth: 2000, frameHeight: 1200 });
 
     // tiles set a
     this.load.image('aTileSq', 'assets/images/tiles/a03a.png');
@@ -99,30 +109,30 @@ function create ()
     this.add.image(352, 316, 'cBridgePost').setScale(1);
 
     // add sprite
-    player = this.physics.add.sprite(400, 270, 'alien').setScale(.3)
+    player = this.physics.add.sprite(400, 270, 'alien').setScale(1)
 
     // player colides with world edges
     player.setCollideWorldBounds(true).setBounce(0.2)
 
     // adds animations for player movements
-    this.anims.create({
-        key:'left',
-        frames: [ { key: 'alien', frame: 0 } ],
-        frameRate: 20,
-        repeat: -1
-        });
-    this.anims.create({
-        key:'turn',
-        frames: [ { key: 'alien', frame: 0 } ],
-        frameRate: 20,
-        repeat: -1
-        })
-    this.anims.create({
-        key:'right',
-        frames: [ { key: 'alien', frame: 0 } ],
-        frameRate: 20,
-        repeat: -1
-        })
+    // this.anims.create({
+    //     key:'left',
+    //     frames: [ { key: 'alien', frame: 0 } ],
+    //     frameRate: 10,
+    //     repeat: -1
+    //     });
+    // this.anims.create({
+    //     key:'turn',
+    //     frames: [ { key: 'alien', frame: 0 } ],
+    //     frameRate: 20,
+    //     repeat: -1
+    //     });
+    // this.anims.create({
+    //     key:'right',
+    //     frames: [ { key: 'alien', frame: 0 } ],
+    //     frameRate: 10,
+    //     repeat: -1
+    //     });
 
     // turns some images into platforms
     platforms = this.physics.add.staticGroup();
