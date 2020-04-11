@@ -1,19 +1,19 @@
 
 // Dependencies
 // Requiring our model
-var db = require("../models");
+// var db = require("../models");
 
 // Routes
 module.exports = function(app) {
 
   // GET route for getting username
-  app.get("/api/user/", function(req, res) {
-    db.username.findAll({})
-      .then(function(dbuserName) {
-        res.json(dbuserName);
-      });
-      console.log(dbuserName);
-  });
+  // app.get("/api/user/", function(req, res) {
+  //   db.username.findAll({})
+  //     .then(function(dbuserName) {
+  //       res.json(dbuserName);
+  //     });
+  //     console.log(dbuserName);
+  // });
 
 
 //   // Get route for retrieving a single post
