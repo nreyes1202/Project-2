@@ -16,13 +16,9 @@ module.exports = function (app) {
 
   // POST route for saving a new username
   app.post("/api/characters", function (req, res) {
-    db.Post.create({
-      title: req.body.title,
-      body: req.body.body,
-      category: req.body.category
-    })
-      .then(function (dbPost) {
-        res.json(dbPost);
+    db.Character.create({})
+      .then(function (dbCharacter) {
+        res.json(dbCharacter);
       });
   });
 

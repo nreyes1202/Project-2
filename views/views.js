@@ -152,15 +152,10 @@ $(document).ready(function () {
 
     // module.exports = [userSprite, backgrounds];
 
-    // CREATE function in game.js 
-
-    // READ function with findAll
-
     $.get("/api/characters")
     .then(function(data){
         console.log(data)
     })
     
-
 });
 
