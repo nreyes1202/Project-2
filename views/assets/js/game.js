@@ -1,11 +1,12 @@
-
 // attaching views inorder to get imports
-const viewsImport = require('.../views');
+// const viewsImport = require('.../views');
 
 var config = {
     type: Phaser.AUTO,
+    // sets game size
     width: 960,
     height: 540,
+    // defines the physics and gravity of the game
     physics: {
         default: 'arcade',
         arcade: {
@@ -13,6 +14,7 @@ var config = {
             debug: true
         }
     },
+    // defines the order the the scene functions are loaded
     scene: {
         preload: preload,
         create: create,
@@ -20,25 +22,24 @@ var config = {
     }
 };
 
+// starts the score function
 var score = 0;
+
+// sets up the game over function to be called at the end
 var gameOver = false;
 
+// starts the game
 var game = new Phaser.Game(config);
 
+// preloads all the images
 function preload ()
 {
-    // bringing in background image from views
-    console.log('backgroundImport: ${viewsImport.backgrounds()}');
-
-    // bringing in playerSetup from views
-    console.log('spriteImport: ${viewsImport.playerSetup()}');
-
     // base set
-    this.load.image('sky', 'assets/images/sky.png');
-    this.load.image('ground', 'assets/images/platform.png');
+    // this.load.image('sky', 'assets/images/sky.png');
+    // this.load.image('ground', 'assets/images/platform.png');
     this.load.image('star', 'assets/images/star.png');
     this.load.image('bomb', 'assets/images/bomb.png');
-    this.load.spritesheet('dude', 'assets/images/dude.png', { frameWidth: 32, frameHeight: 48 });
+    // this.load.spritesheet('dude', 'assets/images/dude.png', { frameWidth: 32, frameHeight: 48 });
 
     // backgrounds set
     this.load.image('asianMountain', 'assets/images/backgrounds/horizontalBackgrounds/background.png');
@@ -75,12 +76,20 @@ function preload ()
 
 }
 
+// creates most of the game elements
 function create ()
 {
-    
+    this.add.image(480, 270, 'postApocalyptic').setScale(.5)
 
-    module.imports = playersSetup
+    // bringing in background image from views
+    // console.log('backgroundImport: ${viewsImport.backgrounds()}');
 
+    // bringing in playerSetup from views
+    // console.log('spriteImport: ${viewsImport.playerSetup()}');
+
+    // module.imports = playersSetup
+
+    // makes keyboard inputs work
     cursors = this.input.keyboard.createCursorKeys();
     
     // c bridge post
@@ -88,6 +97,38 @@ function create ()
     this.add.image(352, 444, 'cBridgePost').setScale(1);
     this.add.image(352, 380, 'cBridgePost').setScale(1);
     this.add.image(352, 316, 'cBridgePost').setScale(1);
+
+    // add sprite
+    player = this.physics.add.sprite(400, 270, 'alien').setScale(.3)
+
+    // player colides with world edges
+    player.setCollideWorldBounds(true).setBounce(0.2)
+
+    // adds animations for player movements
+    this.anims.create({
+        key:'left',
+        frames: [ { key: 'alien', frame: 0 } ],
+        frameRate: 20,
+        repeat: -1
+        });
+    this.anims.create({
+        key:'turn',
+        frames: [ { key: 'alien', frame: 0 } ],
+        frameRate: 20,
+        repeat: -1
+        })
+    this.anims.create({
+        key:'right',
+        frames: [ { key: 'alien', frame: 0 } ],
+        frameRate: 20,
+        repeat: -1
+        })
+
+    // turns some images into platforms
+    platforms = this.physics.add.staticGroup();
+
+    // has player stop at a platform
+    this.physics.add.collider(player, platforms);
 
     // c post
     this.add.image(96, 188, 'cBridgePost').setScale(1);
@@ -99,18 +140,13 @@ function create ()
     this.add.image(928, 348, 'cBridgePost').setScale(1);
     this.add.image(928, 284, 'cBridgePost').setScale(1);
 
-    
-    platforms = this.physics.add.staticGroup();
-
     // c tiles
     platforms.create(32, 508, 'cTileSq2').setScale(1);
     platforms.create(160, 508, 'cTileBlock').setScale(1);
     platforms.create(96, 508, 'cTileBroke').setScale(1);
     platforms.create(224, 508, 'cTileSq2').setScale(1);
     platforms.create(288, 508, 'cTileBroke').setScale(1);
-    
-    
-    
+      
     // a tiles
     platforms.create(32, 252, 'aTileSq').setScale(1);
     platforms.create(96, 252, 'aTileSq2').setScale(1);
@@ -119,8 +155,6 @@ function create ()
     platforms.create(288, 252, 'aTileSq2').setScale(1);
     platforms.create(352, 252, 'aTileSq').setScale(1);
     platforms.create(416, 252, 'aTileRtop').setScale(1);
-
-    
 
     // e tiles
     platforms.create(32, 1, 'eTileSq').setScale(1);
@@ -149,8 +183,6 @@ function create ()
     platforms.create(864, 476, 'aTileLtop').setScale(1);
     platforms.create(928, 476, 'aTileSq2').setScale(1);
 
-    
-
     // e tiles
     platforms.create(736, 220, 'eTileSq').setScale(1);
     platforms.create(800, 220, 'eTileBroken').setScale(1);
@@ -158,6 +190,7 @@ function create ()
     platforms.create(928, 220, 'eTileBroken').setScale(1);
 
      //  Some stars to collect, 13 in total, evenly spaced 70 pixels apart along the x axis
+    //  adds top left stars
      stars1 = this.physics.add.group({
         key: 'star',
         repeat: 6,
@@ -165,6 +198,7 @@ function create ()
         
     });
 
+    // adds top right stars
     stars2 = this.physics.add.group({
         key: 'star',
         repeat: 6,
@@ -172,13 +206,13 @@ function create ()
       
     });
 
+    // adds bottom row of stars
     stars3 = this.physics.add.group({
         key: 'star',
         repeat: 12,
         setXY: { x: 0, y: 320, stepX: 70 }
       
     });
-    
 
     stars1.children.iterate(function (child) {
 
@@ -201,67 +235,81 @@ function create ()
 
     });
 
+    // adds bombs
     bombs = this.physics.add.group();
 
     //  The score
     scoreText = this.add.text(716, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 
+    // makes objects collide when touching
     this.physics.add.collider(stars1, platforms);
     this.physics.add.collider(stars2, platforms);
     this.physics.add.collider(stars3, platforms);
     this.physics.add.collider(bombs, platforms);
 
+    // adds overlap function to collect stars
     this.physics.add.overlap(player, stars1, collectStar, null, this);
     this.physics.add.overlap(player, stars2, collectStar, null, this);
     this.physics.add.overlap(player, stars3, collectStar, null, this);
 
+    // adds colide function to be killed by bombs
     this.physics.add.collider(player, bombs, hitBomb, null, this);
 
 }
 
-
+// updats the game when the player moves or when the game is over
 function update ()
 {
     if (gameOver)
     {
+        // refreshes game
         return;
     }
 
     if (cursors.left.isDown)
     {
+        // moves player left
         player.setVelocityX(-160);
-
+        // changes player animation
         player.anims.play('left', true);
 
     }
     else if (cursors.right.isDown)
     {
+        // moves player right
         player.setVelocityX(160);
-
+        // changes player animation
         player.anims.play('right', true);        
     }
     else
     {
+        // defines when the player is not moving
         player.setVelocityX(0);
-
+        // defines image for when the player is not moving
         player.anims.play('turn');
     }
 
     if (cursors.up.isDown)
     {   
+        // moves the player up
         player.setVelocityY(-330);
+        // defines image for when the player is up
+        player.anims.play('turn');
         
     }
     if (cursors.down.isDown)
     {   
+        // moves the player down
         player.setVelocityY(330);
-        
+        // defines image for when the player is up
+        player.anims.play('turn');
     }
 }
 
-
+// defines how the stars function
 function collectStar (player, star)
 {
+    // makes the stars dissappear
     star.disableBody(true, true);
 
     //  Add and update the score
@@ -277,8 +325,10 @@ function collectStar (player, star)
 
         });
 
+        // Jean is not sure what this does
         var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
+        // defines the function of the bombs
         var bomb = bombs.create(x, 16, 'bomb');
         bomb.setBounce(1);
         bomb.setCollideWorldBounds(true);
@@ -296,8 +346,10 @@ function collectStar (player, star)
 
         });
 
+        // Jean is not sure what this does
         var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
+        // defines the function of the bombs
         var bomb = bombs.create(x, 16, 'bomb');
         bomb.setBounce(1);
         bomb.setCollideWorldBounds(true);
@@ -315,8 +367,10 @@ function collectStar (player, star)
 
         });
 
+        // Jean is not sure what this does
         var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
+        // defines the function of the bombs
         var bomb = bombs.create(x, 16, 'bomb');
         bomb.setBounce(1);
         bomb.setCollideWorldBounds(true);
@@ -327,13 +381,18 @@ function collectStar (player, star)
 
 }
 
+// defines how the bombs function
 function hitBomb (player, bomb)
 {
+    // stops all movement
     this.physics.pause();
 
+    // changes player to red
     player.setTint(0xff0000);
 
+    // changes player image
     player.anims.play('turn');
 
+    // sets up game over
     gameOver = true;
 }
