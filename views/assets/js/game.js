@@ -1,3 +1,7 @@
+
+// attaching views inorder to get imports
+const viewsImport = require('.../views');
+
 var config = {
     type: Phaser.AUTO,
     width: 960,
@@ -6,7 +10,7 @@ var config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 300 },
-            debug: false
+            debug: true
         }
     },
     scene: {
@@ -23,6 +27,12 @@ var game = new Phaser.Game(config);
 
 function preload ()
 {
+    // bringing in background image from views
+    console.log('backgroundImport: ${viewsImport.backgrounds()}');
+
+    // bringing in playerSetup from views
+    console.log('spriteImport: ${viewsImport.playerSetup()}');
+
     // base set
     this.load.image('sky', 'assets/images/sky.png');
     this.load.image('ground', 'assets/images/platform.png');
@@ -47,7 +57,7 @@ function preload ()
     this.load.image('aTileRtop', 'assets/images/tiles/a04b.png');
     this.load.image('aTileRbot', 'assets/images/tiles/a04bb.png');
     this.load.image('aTileLbot', 'assets/images/tiles/a04bc.png');
-    this.load.image('aDoor', 'assets/images/tiles/aDoor.png');
+    // this.load.image('aDoor', 'assets/images/tiles/aDoor.png');
 
     // tile set c 
     this.load.image('cTileSq', 'assets/images/tiles/c02.png');
@@ -65,157 +75,109 @@ function preload ()
 
 }
 
-// var jean = (
-//     this.add.image(960, 540, 'warrior');
-// )
-
-// var nilsen = (
-//     this.add.image(960, 540, 'alien');
-// )
-
-// var derrick = (
-//     this.add.image(960, 540, 'samurai');
-// )
-
-// var imgMountain = (
-//     this.add.image(960, 540, 'asianMountain');
-// )
-
-// var imgForest = (
-//     this.add.image(960, 540, 'amagicForest');
-// )
-
-// var imgPostApocalyptic = (
-//     this.add.image(960, 540, 'postapoochplus');
-// )
-
-// function bkgrnd= make sense of view data
-
 function create ()
 {
-    // bkgrnd();
+    
 
-    // background image 'setScale' is cutting the image in half because of .5
-    this.add.image(480, 270, 'asianMountain').setScale(.5);
-    // this.add.image(480, 270, 'postApocalyptic').setScale(.5);
-    // this.add.image(480, 270, 'magicForest').setScale(.5);
+    module.imports = playersSetup
 
-    player = this.physics.add.sprite(400, 270, 'samurai').setScale(.25);
-    // player = this.physics.add.sprite(480, 270, 'alien').setScale(.3);
-    // player = this.physics.add.sprite(560, 270, 'warrior').setScale(.125);
-
-    player.setCollideWorldBounds(true);
-
-    this.anims.create({
-        key:'left',
-        frames: [ { key: 'samurai', frame: 0 } ],
-        // frames: this.anims.generateFrameNumbers('owlDance', { start: 0, end: 22 }),
-        frameRate: 20,
-        repeat: -1
-    })
-
-    this.anims.create({
-        key:'turn',
-        frames: [ { key: 'samurai', frame: 0 } ],
-        frameRate: 20,
-        repeat: -1
-    })
-
-    this.anims.create({
-        key:'right',
-        frames: [ { key: 'samurai', frame: 0 } ],
-        frameRate: 20,
-        repeat: -1
-    })
-
-    platforms = this.physics.add.staticGroup();
-
-    this.physics.add.collider(player, platforms);
-
-    // c tiles
-    platforms.create(32, 508, 'cTileSq2').setScale(.5);
-    platforms.create(160, 508, 'cTileBlock').setScale(.5);
-    platforms.create(96, 508, 'cTileBroke').setScale(.5);
-    platforms.create(224, 508, 'cTileSq2').setScale(.5);
-    platforms.create(288, 508, 'cTileBroke').setScale(.5);
+    cursors = this.input.keyboard.createCursorKeys();
     
     // c bridge post
-    this.add.image(352, 508, 'cBridgePost').setScale(.5);
-    this.add.image(352, 444, 'cBridgePost').setScale(.5);
-    this.add.image(352, 380, 'cBridgePost').setScale(.5);
-    this.add.image(352, 316, 'cBridgePost').setScale(.5);
-    
-    // a tiles
-    platforms.create(32, 252, 'aTileSq').setScale(.5);
-    platforms.create(96, 252, 'aTileSq2').setScale(.5);
-    platforms.create(160, 252, 'aTileRtop').setScale(.5);
-    platforms.create(224, 252, 'aTileLtop').setScale(.5);
-    platforms.create(288, 252, 'aTileSq2').setScale(.5);
-    platforms.create(352, 252, 'aTileSq').setScale(.5);
-    platforms.create(416, 252, 'aTileRtop').setScale(.5);
+    this.add.image(352, 508, 'cBridgePost').setScale(1);
+    this.add.image(352, 444, 'cBridgePost').setScale(1);
+    this.add.image(352, 380, 'cBridgePost').setScale(1);
+    this.add.image(352, 316, 'cBridgePost').setScale(1);
 
     // c post
-    this.add.image(96, 188, 'cBridgePost').setScale(.5);
-    this.add.image(96, 124, 'cBridgePost').setScale(.5);
-    this.add.image(96, 60, 'cBridgePost').setScale(.5);
+    this.add.image(96, 188, 'cBridgePost').setScale(1);
+    this.add.image(96, 124, 'cBridgePost').setScale(1);
+    this.add.image(96, 60, 'cBridgePost').setScale(1);
 
-    // e tiles
-    platforms.create(32, 1, 'eTileSq').setScale(.5);
-    platforms.create(96, 1, 'eTileBroken').setScale(.5);
-    platforms.create(160, 1, 'eTileSq').setScale(.5);
-    platforms.create(224, 1, 'eTileBroken').setScale(.5);
-    platforms.create(288, 1, 'eTileSq').setScale(.5);
-    platforms.create(352, -16, 'eTileBroken').setScale(.5);
+    // c post
+    this.add.image(928, 412, 'cBridgePost').setScale(1);
+    this.add.image(928, 348, 'cBridgePost').setScale(1);
+    this.add.image(928, 284, 'cBridgePost').setScale(1);
+
+    
+    platforms = this.physics.add.staticGroup();
 
     // c tiles
-    platforms.create(672, 540, 'cTileSq').setScale(.5);
-    platforms.create(608, 540, 'cTileBlock').setScale(.5);
-    platforms.create(544, 540, 'cTileBroke').setScale(.5);
-    platforms.create(480, 540, 'cTileSq2').setScale(.5);
-    platforms.create(416, 540, 'cTileBroke').setScale(.5);
-    platforms.create(352, 540, 'cTileBlock').setScale(.5);
-    platforms.create(736, 540, 'cTileSq').setScale(.5);
-    platforms.create(800, 540, 'cTileBlock').setScale(.5);
-    platforms.create(864, 540, 'cTileBroke').setScale(.5);
-    platforms.create(928, 540, 'cTileBlock').setScale(.5);
-
+    platforms.create(32, 508, 'cTileSq2').setScale(1);
+    platforms.create(160, 508, 'cTileBlock').setScale(1);
+    platforms.create(96, 508, 'cTileBroke').setScale(1);
+    platforms.create(224, 508, 'cTileSq2').setScale(1);
+    platforms.create(288, 508, 'cTileBroke').setScale(1);
+    
+    
+    
     // a tiles
-    platforms.create(672, 476, 'aTileLbot').setScale(.5);
-    platforms.create(736, 476, 'aTileSq2').setScale(.5);
-    platforms.create(800, 476, 'aTileRtop').setScale(.5);
-    platforms.create(864, 476, 'aTileLtop').setScale(.5);
-    platforms.create(928, 476, 'aTileSq2').setScale(.5);
+    platforms.create(32, 252, 'aTileSq').setScale(1);
+    platforms.create(96, 252, 'aTileSq2').setScale(1);
+    platforms.create(160, 252, 'aTileRtop').setScale(1);
+    platforms.create(224, 252, 'aTileLtop').setScale(1);
+    platforms.create(288, 252, 'aTileSq2').setScale(1);
+    platforms.create(352, 252, 'aTileSq').setScale(1);
+    platforms.create(416, 252, 'aTileRtop').setScale(1);
 
-    // c post
-    platforms.create(928, 412, 'cBridgePost').setScale(.5);
-    platforms.create(928, 348, 'cBridgePost').setScale(.5);
-    platforms.create(928, 284, 'cBridgePost').setScale(.5);
+    
 
     // e tiles
-    platforms.create(736, 220, 'eTileSq').setScale(.5);
-    platforms.create(800, 220, 'eTileBroken').setScale(.5);
-    platforms.create(864, 220, 'eTileSq').setScale(.5);
-    platforms.create(928, 220, 'eTileBroken').setScale(.5);
+    platforms.create(32, 1, 'eTileSq').setScale(1);
+    platforms.create(96, 1, 'eTileBroken').setScale(1);
+    platforms.create(160, 1, 'eTileSq').setScale(1);
+    platforms.create(224, 1, 'eTileBroken').setScale(1);
+    platforms.create(288, 1, 'eTileSq').setScale(1);
+    platforms.create(352, -16, 'eTileBroken').setScale(1);
 
-    // adds keyboard inputs
-    cursors = this.input.keyboard.createCursorKeys();
+    // c tiles
+    platforms.create(672, 540, 'cTileSq').setScale(1);
+    platforms.create(608, 540, 'cTileBlock').setScale(1);
+    platforms.create(544, 540, 'cTileBroke').setScale(1);
+    platforms.create(480, 540, 'cTileSq2').setScale(1);
+    platforms.create(416, 540, 'cTileBroke').setScale(1);
+    platforms.create(352, 540, 'cTileBlock').setScale(1);
+    platforms.create(736, 540, 'cTileSq').setScale(1);
+    platforms.create(800, 540, 'cTileBlock').setScale(1);
+    platforms.create(864, 540, 'cTileBroke').setScale(1);
+    platforms.create(928, 540, 'cTileBlock').setScale(1);
 
-     //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
+    // a tiles
+    platforms.create(672, 476, 'aTileLbot').setScale(1);
+    platforms.create(736, 476, 'aTileSq2').setScale(1);
+    platforms.create(800, 476, 'aTileRtop').setScale(1);
+    platforms.create(864, 476, 'aTileLtop').setScale(1);
+    platforms.create(928, 476, 'aTileSq2').setScale(1);
+
+    
+
+    // e tiles
+    platforms.create(736, 220, 'eTileSq').setScale(1);
+    platforms.create(800, 220, 'eTileBroken').setScale(1);
+    platforms.create(864, 220, 'eTileSq').setScale(1);
+    platforms.create(928, 220, 'eTileBroken').setScale(1);
+
+     //  Some stars to collect, 13 in total, evenly spaced 70 pixels apart along the x axis
      stars1 = this.physics.add.group({
         key: 'star',
-        repeat: 13,
-        setXY: { x: 12, y: 0, stepX: 70 },
+        repeat: 6,
+        setXY: { x: 46, y: 0, stepX: 70 },
         
     });
 
     stars2 = this.physics.add.group({
         key: 'star',
-        repeat: 12,
-        setXY: { x: 46, y: 300, stepX: 70 }
+        repeat: 6,
+        setXY: { x: 466, y: 0, stepX: 70 }
       
     });
 
-
+    stars3 = this.physics.add.group({
+        key: 'star',
+        repeat: 12,
+        setXY: { x: 0, y: 320, stepX: 70 }
+      
+    });
     
 
     stars1.children.iterate(function (child) {
@@ -232,6 +194,13 @@ function create ()
 
     });
 
+    stars3.children.iterate(function (child) {
+
+        //  Give each star a slightly different bounce
+        child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+
+    });
+
     bombs = this.physics.add.group();
 
     //  The score
@@ -239,10 +208,12 @@ function create ()
 
     this.physics.add.collider(stars1, platforms);
     this.physics.add.collider(stars2, platforms);
+    this.physics.add.collider(stars3, platforms);
     this.physics.add.collider(bombs, platforms);
 
     this.physics.add.overlap(player, stars1, collectStar, null, this);
     this.physics.add.overlap(player, stars2, collectStar, null, this);
+    this.physics.add.overlap(player, stars3, collectStar, null, this);
 
     this.physics.add.collider(player, bombs, hitBomb, null, this);
 
@@ -276,9 +247,14 @@ function update ()
         player.anims.play('turn');
     }
 
-    if (cursors.up.isDown && player.body.touching.down)
+    if (cursors.up.isDown)
     {   
         player.setVelocityY(-330);
+        
+    }
+    if (cursors.down.isDown)
+    {   
+        player.setVelocityY(330);
         
     }
 }
@@ -329,6 +305,26 @@ function collectStar (player, star)
         bomb.allowGravity = false;
 
     }
+
+    if (stars3.countActive(true) === 0)
+    {
+        //  A new batch of stars to collect
+        stars3.children.iterate(function (child) {
+
+            child.enableBody(true, child.x, 0, true, true);
+
+        });
+
+        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+
+        var bomb = bombs.create(x, 16, 'bomb');
+        bomb.setBounce(1);
+        bomb.setCollideWorldBounds(true);
+        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+        bomb.allowGravity = false;
+
+    }
+
 }
 
 function hitBomb (player, bomb)
