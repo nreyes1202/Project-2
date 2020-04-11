@@ -72,8 +72,12 @@ $(document).ready(function () {
 
 >>>>>>> c5af6014da2efdcdba34022f10ebdffbab54140c
         console.log("userSprite = " + userSprite + " a warrior");
+<<<<<<< HEAD
         
 >>>>>>> f118665fe52691530ab0b18a47005ab656a407a4
+=======
+
+>>>>>>> ca7535b686f6a6d649a8103a0b532e4ae284ec5a
     });
 
     $("#nilsen").click(function () {
@@ -108,7 +112,7 @@ $(document).ready(function () {
         //     };
 
         console.log("userSprite = " + userSprite + " an alien");
-        
+
     });
 
     $("#derrick").click(function () {
@@ -143,7 +147,7 @@ $(document).ready(function () {
         //     };
 
         console.log("userSprite = " + userSprite + " a samurai");
-        
+
     });
 
     // Button click selector Functions-images
@@ -159,7 +163,7 @@ $(document).ready(function () {
 
         console.log("userImg = " + userImg);
         console.log(backgrounds);
-        
+
     });
 
     $("#imgForest").click(function () {
@@ -169,8 +173,8 @@ $(document).ready(function () {
 
         // var backgrounds = (this.add.image(480, 270, 'magicForest').setScale(.5));
 
-        console.log("userImg = " + userImg); 
-        console.log(backgrounds);       
+        console.log("userImg = " + userImg);
+        console.log(backgrounds);
     });
 
     $("#imgPostApocalyptic").click(function () {
@@ -184,8 +188,20 @@ $(document).ready(function () {
         console.log(backgrounds);
     });
 
-    module.exports = [userImg, playersSetup];
-
     // module.exports = [userSprite, backgrounds];
 
+    // CREATE function in game.js 
+
+
+
+
+    // READ function with findAll
+
+    $.get("/api/characters")
+    .then(function(data){
+        console.log(data)
+    })
+    
+
 });
+
