@@ -11,6 +11,7 @@ body{
 .selectionBox {
     /* border: red 1px solid; */
     float: left;
+    /* clear: right; */
     width: 33.3%;
     margin:2px 2px 2px 2px;
     height: 100px;
@@ -23,6 +24,24 @@ h1{
     text-align: center;
     color: red;
 }
+
+#tableBox{
+clear: both;
+/* position: relative; */
+float: left;
+}
+
+#table{
+    border: solid red 1px;
+    position: relative;
+    clear: both
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
 
 
 
