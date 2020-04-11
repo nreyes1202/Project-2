@@ -39,7 +39,7 @@ $(document).ready(function () {
         //     };
 
         console.log("userSprite = " + userSprite + " a warrior");
-        
+
     });
 
     $("#nilsen").click(function () {
@@ -74,7 +74,7 @@ $(document).ready(function () {
         //     };
 
         console.log("userSprite = " + userSprite + " an alien");
-        
+
     });
 
     $("#derrick").click(function () {
@@ -109,7 +109,7 @@ $(document).ready(function () {
         //     };
 
         console.log("userSprite = " + userSprite + " a samurai");
-        
+
     });
 
     // Button click selector Functions-images
@@ -125,7 +125,7 @@ $(document).ready(function () {
 
         console.log("userImg = " + userImg);
         console.log(backgrounds);
-        
+
     });
 
     $("#imgForest").click(function () {
@@ -135,8 +135,8 @@ $(document).ready(function () {
 
         // var backgrounds = (this.add.image(480, 270, 'magicForest').setScale(.5));
 
-        console.log("userImg = " + userImg); 
-        console.log(backgrounds);       
+        console.log("userImg = " + userImg);
+        console.log(backgrounds);
     });
 
     $("#imgPostApocalyptic").click(function () {
@@ -150,8 +150,20 @@ $(document).ready(function () {
         console.log(backgrounds);
     });
 
-    module.exports = [userImg, playersSetup];
-
     // module.exports = [userSprite, backgrounds];
 
+    // CREATE function in game.js 
+
+
+
+
+    // READ function with findAll
+
+    $.get("/api/characters")
+    .then(function(data){
+        console.log(data)
+    })
+    
+
 });
+

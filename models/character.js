@@ -4,7 +4,7 @@
 module.exports = function(sequelize, Sequelize) {
 
 //Creates a "Character" model that matches up with DB
-var Character = sequelize.define("character", {
+var Character = sequelize.define("Character", {
   // the username (a string)
   id: {
     autoIncrement: true,

@@ -5,9 +5,9 @@
 
 // Routes
 module.exports = function(app) {
-
+console.log(db.Character)
   // GET route for getting username
-  app.get("/api/user/", function(req, res) {
+  app.get("/api/characters/", function(req, res) {
     db.Character.findAll({})
       .then(function(dbCharacter) {
         res.json(dbCharacter);
@@ -15,17 +15,17 @@ module.exports = function(app) {
   });
 
 //   // POST route for saving a new username
-  app.post("/api/posts", function(req, res) {
-    console.log(req.body);
-    db.Post.create({
-      title: req.body.title,
-      body: req.body.body,
-      category: req.body.category
-    })
-      .then(function(dbPost) {
-        res.json(dbPost);
-      });
-  });
+  // app.post("/api/posts", function(req, res) {
+  //   console.log(req.body);
+  //   db.Post.create({
+  //     title: req.body.title,
+  //     body: req.body.body,
+  //     category: req.body.category
+  //   })
+  //     .then(function(dbPost) {
+  //       res.json(dbPost);
+  //     });
+  // });
 
 
 
