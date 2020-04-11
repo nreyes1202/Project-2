@@ -154,9 +154,6 @@ $(document).ready(function () {
 
     // CREATE function in game.js 
 
-
-
-
     // READ function with findAll
 
     $.get("/api/characters")
