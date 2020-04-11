@@ -1,7 +1,24 @@
 *{
     box-sizing: border-box;
+    font-family: 'Press Start 2P', cursive;
+   
 }
 
 body{
     background-color: bisque;
 }
+
+.selectionBox {
+    /* border: red 1px solid; */
+    float: left;
+    width: 33.3%;
+    margin:2px 2px 2px 2px;
+    height: 100px;
+    margin: auto !important;
+    text-align: center;
+}
+h1{
+    text-align: center;
+}
+
+
