@@ -5,40 +5,46 @@ $(document).ready(function () {
 
     //button click selector function for images/sprites
     var userSprite = '';
-
-    // function jean = (
-    //     'this.add.image(960, 540, \'warrior\');'
-    // )
-    
-    // function nilsen = (
-    //     this.add.image(960, 540, 'alien');
-    // )
-    
-    // function derrick = (
-    //     this.add.image(960, 540, 'samurai');
-    // )
-    
-    // function imgMountain = (
-    //     this.add.image(960, 540, 'asianMountain');
-    // )
-    
-    // function imgForest = (
-    //     this.add.image(960, 540, 'amagicForest');
-    // )
-    
-    // function imgPostApocalyptic = (
-    //     this.add.image(960, 540, 'postapoochplus');
-    // )
-    
-
+    var playersSetup = '';
 
     $("#jean").click(function () {
         // console.log('Button click "Jean" happened');
 
         var userSprite = $(this).attr('id');
 
+<<<<<<< HEAD
         console.log("userSprite = " + userSprite);
 
+=======
+        var playersSetup = {
+            playersSprites : (this.physics.add.sprite(400, 270, 'warrior').setScale(.125)),
+            playerCollider : (playerSprites.player.setCollideWorldBounds(true).setBounce(0.2)
+            ),
+            playermove: {
+                    animsLeft: (this.anims.create({
+                        key:'left',
+                        frames: [ { key: 'warrior', frame: 0 } ],
+                        frameRate: 20,
+                        repeat: -1
+                    })),
+                    animsTurn: (this.anims.create({
+                        key:'turn',
+                        frames: [ { key: 'warrior', frame: 0 } ],
+                        frameRate: 20,
+                        repeat: -1
+                    })),
+                    animsRight: (this.anims.create({
+                        key:'right',
+                        frames: [ { key: 'warrior', frame: 0 } ],
+                        frameRate: 20,
+                        repeat: -1
+                    }))
+                }
+            };
+            
+        console.log("userSprite = " + userSprite + " a warrior");
+        
+>>>>>>> f118665fe52691530ab0b18a47005ab656a407a4
     });
 
     $("#nilsen").click(function () {
@@ -46,7 +52,33 @@ $(document).ready(function () {
 
         var userSprite = $(this).attr('id');
 
-        console.log("userSprite = " + userSprite);
+        var playersSetup = {
+            playersSprites : (this.physics.add.sprite(400, 270, 'alien').setScale(.30)),
+            playerCollider : (playerSprites.player.setCollideWorldBounds(true).setBounce(0.2)
+            ),
+            playermove: {
+                    animsLeft: (this.anims.create({
+                        key:'left',
+                        frames: [ { key: 'alien', frame: 0 } ],
+                        frameRate: 20,
+                        repeat: -1
+                    })),
+                    animsTurn: (this.anims.create({
+                        key:'turn',
+                        frames: [ { key: 'alien', frame: 0 } ],
+                        frameRate: 20,
+                        repeat: -1
+                    })),
+                    animsRight: (this.anims.create({
+                        key:'right',
+                        frames: [ { key: 'alien', frame: 0 } ],
+                        frameRate: 20,
+                        repeat: -1
+                    }))
+                }
+            };
+
+        console.log("userSprite = " + userSprite + " an alien");
         
     });
 
@@ -55,19 +87,49 @@ $(document).ready(function () {
 
         var userSprite = $(this).attr('id');
 
-        console.log("userSprite = " + userSprite);
+        var playersSetup = {
+            playersSprites : (this.physics.add.sprite(400, 270, 'samurai').setScale(.25)),
+            playerCollider : (playerSprites.player.setCollideWorldBounds(true).setBounce(0.2)
+            ),
+            playermove: {
+                    animsLeft: (this.anims.create({
+                        key:'left',
+                        frames: [ { key: 'samurai', frame: 0 } ],
+                        frameRate: 20,
+                        repeat: -1
+                    })),
+                    animsTurn: (this.anims.create({
+                        key:'turn',
+                        frames: [ { key: 'samurai', frame: 0 } ],
+                        frameRate: 20,
+                        repeat: -1
+                    })),
+                    animsRight: (this.anims.create({
+                        key:'right',
+                        frames: [ { key: 'samurai', frame: 0 } ],
+                        frameRate: 20,
+                        repeat: -1
+                    }))
+                }
+            };
+
+        console.log("userSprite = " + userSprite + " a samurai");
         
     });
 
     // Button click selector Functions-images
     var userImg = '';
+    var backgrounds = '';
 
     $("#imgMountain").click(function () {
         // console.log('Button click "Mountain" happened');
 
         var userImg = $(this).attr('id');
 
+        var backgrounds = (this.add.image(480, 270, 'asianMountain').setScale(.5));
+
         console.log("userImg = " + userImg);
+        console.log(backgrounds);
         
     });
 
@@ -76,7 +138,10 @@ $(document).ready(function () {
 
         var userImg = $(this).attr('id');
 
-        console.log("userImg = " + userImg);        
+        var backgrounds = (this.add.image(480, 270, 'magicForest').setScale(.5));
+
+        console.log("userImg = " + userImg); 
+        console.log(backgrounds);       
     });
 
     $("#imgPostApocalyptic").click(function () {
@@ -84,9 +149,12 @@ $(document).ready(function () {
 
         var userImg = $(this).attr('id');
 
+        var backgrounds = (this.add.image(480, 270, 'postApocalyptic').setScale(.5));
+
         console.log("userImg = " + userImg);
+        console.log(backgrounds);
     });
 
-    module.exports = [userSprite, userImg];
+    module.exports = [userSprite, userImg, backgrounds, playersSetup];
 
 });
