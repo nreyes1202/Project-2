@@ -11,19 +11,53 @@ var config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 300 },
-            debug: true
+            debug: false
         }
     },
     // defines the order the the scene functions are loaded
     scene: {
+        // gameSetup: gameSetup,
         preload: preload,
         create: create,
         update: update
     }
 };
 
-// starts the score function
+// function gameSetup () {
+//     if (userSprite === 'nilsen') {
+//         spriteNilsen();
+//     }
+//     if (userSprite === 'jean') {
+//         spriteJean();
+//     }
+//     if (userSprite === 'derrick') {
+//         spriteDerrick();
+//     }
+//     if (userImg === 'imgMountain') {
+//         backgroundMountain()
+//     }
+//     if (userImg === 'imgForest') {
+//         backgroundForest();
+//     }
+//     if (userImg === 'imgPostApocalyptic') {
+//         backgroundPost();
+//     }
+// }
+
+// setting up variables outside of functions
+var player;
+var stars;
+var bombs;
+var platforms;
+var cursors;
+
+// starts the score function and rounds function
 var score = 0;
+var rounds = 1;
+
+// sets up variables for text
+var teacher = '';
+var goCondition = '';
 
 // sets up the game over function to be called at the end
 var gameOver = false;
@@ -34,23 +68,57 @@ var game = new Phaser.Game(config);
 // preloads all the images
 function preload ()
 {
-    // base set
-    // this.load.image('sky', 'assets/images/sky.png');
-    // this.load.image('ground', 'assets/images/platform.png');
+   
+    // function backgroundForest() {
+    //     this.load.image('background', 'assets/images/backgrounds/magicForestBackground/background.png');
+    //     console.log('userImg is a forest')
+    // };
+
+    // function spriteJean() {
+    //     this.load.image('sprite', 'assets/images/sprites/warriorSpriteFemale/_PNG/spriteSheet.png', { frameWidth: 230, frameHeight: 398 });
+    //     console.log('userSprite is a warrior')
+    // };
+
+    // function backgroundPost() {
+    //     this.load.image('background', 'assets/images/backgrounds/parallaxBackground/background.png');
+    //     console.log('userImg is post apocalyptic')
+    // };
+
+    // function spriteNilsen() {
+    //    this.load.image('sprite', 'assets/images/sprites/aliensSprite/alien/PNG/spriteSheet.png', { frameWidth: 230, frameHeight: 398 });
+    //     console.log('userSprite is an alien')
+    // };
+
+    // function backgroundMountain() {
+    //     this.load.image('background', 'assets/images/backgrounds/horizontalBackgrounds/background.png');
+    //     console.log('userImg is a mountain')
+    // }; 
+
+    // function spriteDerrick() {
+    //     this.load.image('sprite', 'assets/images/sprites/samuraiSprite/_PNG/spriteSheet.png', { frameWidth: 230, frameHeight: 398 });
+    //     console.log('userSprite is a samurai')
+    // };
+
+    // round 1 resources
+    this.load.image('background', 'assets/images/backgrounds/parallaxBackground/background.png');
     this.load.image('star', 'assets/images/star.png');
-    this.load.image('bomb', 'assets/images/bomb.png');
-    // this.load.spritesheet('dude', 'assets/images/dude.png', { frameWidth: 32, frameHeight: 48 });
-
-    // backgrounds set
-    this.load.image('asianMountain', 'assets/images/backgrounds/horizontalBackgrounds/background.png');
-    this.load.image('magicForest', 'assets/images/backgrounds/magicForestBackground/background.png');
-    this.load.image('postApocalyptic', 'assets/images/backgrounds/parallaxBackground/background.png');
-
-    // sprite set
-    this.load.image('samurai', 'assets/images/sprites/samuraiSprite/_PNG/spriteSheet.png', { frameWidth: 1100, frameHeight: 650 });
     this.load.image('alien', 'assets/images/sprites/aliensSprite/alien/PNG/spriteSheet.png', { frameWidth: 230, frameHeight: 398 });
-    this.load.image('warrior', 'assets/images/sprites/warriorSpriteFemale/_PNG/spriteSheet.png', { frameWidth: 2000, frameHeight: 1200 });
+    
+    // round 2 resources
+    this.load.image('mike', 'assets/images/monsterBombs/mike.png');
+    this.load.image('slime', 'assets/images/objects/slime.png');
 
+    // round 3 resources
+    this.load.image('kurt', 'assets/images/monsterBombs/kurt.png');
+    this.load.image('coin', 'assets/images/objects/coin.png');
+
+    // round 4 resources
+    this.load.image('chris', 'assets/images/monsterBombs/chris.png');
+    this.load.image('banana', 'assets/images/objects/banana.png');
+
+    // game over resources
+    this.load.image('scroll', 'assets/images/gui/window3.png');
+    
     // tiles set a
     this.load.image('aTileSq', 'assets/images/tiles/a03a.png');
     this.load.image('aTileSq2', 'assets/images/tiles/a03b.png');
@@ -79,24 +147,36 @@ function preload ()
 // creates most of the game elements
 function create ()
 {
-    this.add.image(480, 270, 'postApocalyptic').setScale(.5)
-
-    // bringing in background image from views
-    // console.log('backgroundImport: ${viewsImport.backgrounds()}');
-
-    // bringing in playerSetup from views
-    // console.log('spriteImport: ${viewsImport.playerSetup()}');
-
-    // module.imports = playersSetup
+    // adds in background image
+    this.add.image(480, 270, 'background').setScale(.5)
 
     // makes keyboard inputs work
     cursors = this.input.keyboard.createCursorKeys();
+
+    // makes text for score and rounds
+    scoreText = this.add.text(716, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
+    roundsText = this.add.text(716, 48, 'Round: 1', { fontSize: '32px', fill: '#000' });
+
+    // makes title text
+    attackText = this.add.text(350, 32, '', { fontSize: '32px', fill: '#000' });
+    var teacher = '?';
+    attackText.setText('Attack of ' + teacher)
     
-    // c bridge post
-    this.add.image(352, 508, 'cBridgePost').setScale(1);
-    this.add.image(352, 444, 'cBridgePost').setScale(1);
-    this.add.image(352, 380, 'cBridgePost').setScale(1);
-    this.add.image(352, 316, 'cBridgePost').setScale(1);
+    // c bridge post bottom left
+    this.add.image(412, 508, 'cBridgePost').setScale(1);
+    this.add.image(412, 444, 'cBridgePost').setScale(1);
+    this.add.image(412, 380, 'cBridgePost').setScale(1);
+    this.add.image(412, 316, 'cBridgePost').setScale(1);
+
+    // c post top left
+    this.add.image(96, 188, 'cBridgePost').setScale(1);
+    this.add.image(96, 124, 'cBridgePost').setScale(1);
+    this.add.image(96, 60, 'cBridgePost').setScale(1);
+ 
+    // c post bottom right
+    this.add.image(750, 412, 'cBridgePost').setScale(1);
+    this.add.image(750, 348, 'cBridgePost').setScale(1);
+    this.add.image(750, 284, 'cBridgePost').setScale(1);
 
     // add sprite
     player = this.physics.add.sprite(400, 270, 'alien').setScale(.3)
@@ -130,33 +210,23 @@ function create ()
     // has player stop at a platform
     this.physics.add.collider(player, platforms);
 
-    // c post
-    this.add.image(96, 188, 'cBridgePost').setScale(1);
-    this.add.image(96, 124, 'cBridgePost').setScale(1);
-    this.add.image(96, 60, 'cBridgePost').setScale(1);
-
-    // c post
-    this.add.image(928, 412, 'cBridgePost').setScale(1);
-    this.add.image(928, 348, 'cBridgePost').setScale(1);
-    this.add.image(928, 284, 'cBridgePost').setScale(1);
-
-    // c tiles
+    // c tiles bottom left platform
     platforms.create(32, 508, 'cTileSq2').setScale(1);
     platforms.create(160, 508, 'cTileBlock').setScale(1);
     platforms.create(96, 508, 'cTileBroke').setScale(1);
     platforms.create(224, 508, 'cTileSq2').setScale(1);
     platforms.create(288, 508, 'cTileBroke').setScale(1);
       
-    // a tiles
+    // a tiles middle left platform
     platforms.create(32, 252, 'aTileSq').setScale(1);
     platforms.create(96, 252, 'aTileSq2').setScale(1);
     platforms.create(160, 252, 'aTileRtop').setScale(1);
-    platforms.create(224, 252, 'aTileLtop').setScale(1);
-    platforms.create(288, 252, 'aTileSq2').setScale(1);
-    platforms.create(352, 252, 'aTileSq').setScale(1);
-    platforms.create(416, 252, 'aTileRtop').setScale(1);
+    platforms.create(348, 252, 'aTileLtop').setScale(1);
+    // platforms.create(288, 252, 'aTileSq2').setScale(1);
+    platforms.create(412, 252, 'aTileSq').setScale(1);
+    platforms.create(476, 252, 'aTileRtop').setScale(1);
 
-    // e tiles
+    // e tiles top left platform
     platforms.create(32, 1, 'eTileSq').setScale(1);
     platforms.create(96, 1, 'eTileBroken').setScale(1);
     platforms.create(160, 1, 'eTileSq').setScale(1);
@@ -164,7 +234,7 @@ function create ()
     platforms.create(288, 1, 'eTileSq').setScale(1);
     platforms.create(352, -16, 'eTileBroken').setScale(1);
 
-    // c tiles
+    // c tiles bottom right gray platform
     platforms.create(672, 540, 'cTileSq').setScale(1);
     platforms.create(608, 540, 'cTileBlock').setScale(1);
     platforms.create(544, 540, 'cTileBroke').setScale(1);
@@ -176,103 +246,96 @@ function create ()
     platforms.create(864, 540, 'cTileBroke').setScale(1);
     platforms.create(928, 540, 'cTileBlock').setScale(1);
 
-    // a tiles
+    // a tiles bottom right purple platform
     platforms.create(672, 476, 'aTileLbot').setScale(1);
     platforms.create(736, 476, 'aTileSq2').setScale(1);
     platforms.create(800, 476, 'aTileRtop').setScale(1);
     platforms.create(864, 476, 'aTileLtop').setScale(1);
     platforms.create(928, 476, 'aTileSq2').setScale(1);
 
-    // e tiles
-    platforms.create(736, 220, 'eTileSq').setScale(1);
-    platforms.create(800, 220, 'eTileBroken').setScale(1);
-    platforms.create(864, 220, 'eTileSq').setScale(1);
-    platforms.create(928, 220, 'eTileBroken').setScale(1);
+    // e tiles middle right platform
+    platforms.create(686, 220, 'eTileSq').setScale(1);
+    platforms.create(750, 220, 'eTileBroken').setScale(1);
+    platforms.create(814, 220, 'eTileSq').setScale(1);
+    // platforms.create(928, 220, 'eTileBroken').setScale(1);
 
-     //  Some stars to collect, 13 in total, evenly spaced 70 pixels apart along the x axis
-    //  adds top left stars
-     stars1 = this.physics.add.group({
-        key: 'star',
-        repeat: 6,
-        setXY: { x: 46, y: 0, stepX: 70 },
-        
-    });
-
-    // adds top right stars
-    stars2 = this.physics.add.group({
-        key: 'star',
-        repeat: 6,
-        setXY: { x: 466, y: 0, stepX: 70 }
-      
-    });
-
-    // adds bottom row of stars
-    stars3 = this.physics.add.group({
+    //  Some stars to collect, 13 in total, evenly spaced 70 pixels apart along the x axis
+    //  adds top stars
+    stars1 = this.physics.add.group({
         key: 'star',
         repeat: 12,
-        setXY: { x: 0, y: 320, stepX: 70 }
-      
-    });
+        setXY: { x: 46, y: 0, stepX: 70 },
+        
+    })
 
+    // adds bottom row of stars
+    stars2 = this.physics.add.group({
+        key: 'star',
+        repeat: 13,
+        setXY: { x: 16, y: 320, stepX: 70 }
+      
+    })
+
+    // makes stars bouncy
     stars1.children.iterate(function (child) {
 
         //  Give each star a slightly different bounce
         child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
 
-    });
+    })
 
     stars2.children.iterate(function (child) {
 
         //  Give each star a slightly different bounce
         child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
 
-    });
-
-    stars3.children.iterate(function (child) {
-
-        //  Give each star a slightly different bounce
-        child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-
-    });
+    })
 
     // adds bombs
     bombs = this.physics.add.group();
 
-    //  The score
-    scoreText = this.add.text(716, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
-
     // makes objects collide when touching
     this.physics.add.collider(stars1, platforms);
     this.physics.add.collider(stars2, platforms);
-    this.physics.add.collider(stars3, platforms);
     this.physics.add.collider(bombs, platforms);
 
     // adds overlap function to collect stars
-    this.physics.add.overlap(player, stars1, collectStar, null, this);
-    this.physics.add.overlap(player, stars2, collectStar, null, this);
-    this.physics.add.overlap(player, stars3, collectStar, null, this);
+    this.physics.add.overlap(player, stars1, collectStar1, null, this);
+    this.physics.add.overlap(player, stars2, collectStar2, null, this);
 
-    // adds colide function to be killed by bombs
-    this.physics.add.collider(player, bombs, hitBomb, null, this);
+    // adds overlap function to be killed by bombs
+    this.physics.add.overlap(player, bombs, hitBomb, null, this);
 
 }
 
-// updats the game when the player moves or when the game is over
+// checks the game constantly for update functions
 function update ()
 {
+
     if (gameOver)
     {
-        // refreshes game
+        // sets up pop up variables outside of functions
+        var popUp;
+        popUp = this.add.image(480, 270, 'scroll').setScale(.5);
+ 
+        var popupText1;
+        var popupText2;
+        popupText1 = this.add.text(350, 232, '', { fontSize: '32px', fill: '#000' });
+        popupText2 = this.add.text(350, 264, '', { fontSize: '32px', fill: '#000' });
+
+        // goCondition either says WON!! or LOST!! depending
+        popupText1.setText('Game Over you')
+        popupText2.setText(goCondition)
+
+        // runs game over function
         return;
     }
-
     if (cursors.left.isDown)
     {
         // moves player left
         player.setVelocityX(-160);
         // changes player animation
         player.anims.play('left', true);
-
     }
     else if (cursors.right.isDown)
     {
@@ -288,14 +351,12 @@ function update ()
         // defines image for when the player is not moving
         player.anims.play('turn');
     }
-
     if (cursors.up.isDown)
     {   
         // moves the player up
         player.setVelocityY(-330);
         // defines image for when the player is up
-        player.anims.play('turn');
-        
+        player.anims.play('turn');   
     }
     if (cursors.down.isDown)
     {   
@@ -304,84 +365,236 @@ function update ()
         // defines image for when the player is up
         player.anims.play('turn');
     }
+    if (score === 250) {
+        // starts round 2 when score reaches x
+        // imeediatly changes the score so round 2 stops getting called
+        score += 10;
+        scoreText.setText('Score: ' + score);
+
+        // changes the rounds counter
+        rounds = 2;
+        roundsText.setText('Round: ' + rounds); 
+        console.log('Round 2');
+
+        // changes the title text for the round
+        var teacher = 'Mike!';
+        attackText.setText('Attack of ' + teacher)
+
+        // loads in new stars with a slime skin
+        stars1 = this.physics.add.group({
+            key: 'slime',
+            repeat: 12,
+            setXY: { x: 46, y: 0, stepX: 70 }, 
+        })
+    
+        // adds bottom row of stars with a slime skin
+        stars2 = this.physics.add.group({
+            key: 'slime',
+            repeat: 13,
+            setXY: { x: 16, y: 320, stepX: 70 }
+          
+        })
+    
+        // sets up stars bounce
+        stars1.children.iterate(function (child) {
+    
+            //  Give each star a slightly different bounce
+            child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+    
+        })
+    
+        stars2.children.iterate(function (child) {
+    
+            //  Give each star a slightly different bounce
+            child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+    
+        })
+    
+        // I do not know what this does but is needed here
+        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+    
+        // makes new monster bomb with a mike skin
+        var bomb = bombs.create(x, 16, 'mike').setScale(.125);
+        bomb.setBounce(1);
+        bomb.setCollideWorldBounds(true);
+        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+        bomb.allowGravity = false;
+
+        // makes objects collide when touching
+        this.physics.add.collider(stars1, platforms);
+        this.physics.add.collider(stars2, platforms);
+        this.physics.add.collider(bombs, platforms);
+
+        // adds overlap function to collect stars
+        this.physics.add.overlap(player, stars1, collectStar1, null, this);
+        this.physics.add.overlap(player, stars2, collectStar2, null, this);
+   
+        // adds colide function to be killed by bombs
+        this.physics.add.overlap(player, bombs, hitBomb, null, this);
+
+    }
+    if (score === 530) {
+        // starts new round when score reaches x
+        // imeediatly changes the score so new round stops getting called
+        score += 10;
+        scoreText.setText('Score: ' + score);
+        rounds = 3;
+        roundsText.setText('Round: ' + rounds); 
+
+        // changes title text
+        var teacher = 'Kurt!';
+        attackText.setText('Attack of ' + teacher)
+
+        // new star coins
+        stars1 = this.physics.add.group({
+            key: 'coin',
+            repeat: 12,
+            setXY: { x: 46, y: 0, stepX: 70 },   
+        })
+    
+        // adds bottom row of star coins
+        stars2 = this.physics.add.group({
+            key: 'coin',
+            repeat: 13,
+            setXY: { x: 16, y: 320, stepX: 70 } 
+        })
+    
+        // adds star coin bounce
+        stars1.children.iterate(function (child) {
+    
+            //  Give each star a slightly different bounce
+            child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+    
+        })
+    
+        stars2.children.iterate(function (child) {
+    
+            //  Give each star a slightly different bounce
+            child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+    
+        })
+    
+        // needed but not sure what it does
+        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+    
+        // sets up monster bomb kurt
+        var bomb = bombs.create(x, 16, 'kurt').setScale(.125);
+        bomb.setBounce(1);
+        bomb.setCollideWorldBounds(true);
+        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+        bomb.allowGravity = false;
+
+        // makes objects collide when touching
+        this.physics.add.collider(stars1, platforms);
+        this.physics.add.collider(stars2, platforms);
+        this.physics.add.collider(bombs, platforms);
+
+        // adds overlap function to collect stars
+        this.physics.add.overlap(player, stars1, collectStar1, null, this);
+        this.physics.add.overlap(player, stars2, collectStar2, null, this);
+
+        // adds colide function to be killed by bombs
+        this.physics.add.overlap(player, bombs, hitBomb, null, this);
+    }
+    if (score === 810) {
+        // starts new round when score reaches x
+        // imeediatly changes the score so new round stops getting called
+        score += 10;
+        scoreText.setText('Score: ' + score);
+        rounds = 4;
+        roundsText.setText('Round: ' + rounds); 
+
+        // changes title text
+        var teacher = 'Chris!';
+        attackText.setText('Attack of ' + teacher)
+
+        // adds in banana's as stars
+        stars1 = this.physics.add.group({
+            key: 'banana',
+            repeat: 12,
+            setXY: { x: 46, y: 0, stepX: 70 },
+            
+        })
+    
+        // adds bottom row of star banana's
+        stars2 = this.physics.add.group({
+            key: 'banana',
+            repeat: 13,
+            setXY: { x: 16, y: 320, stepX: 70 }
+          
+        })
+    
+        // sets up banana star bounce
+        stars1.children.iterate(function (child) {
+    
+            //  Give each star a slightly different bounce
+            child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+    
+        })
+    
+        stars2.children.iterate(function (child) {
+    
+            //  Give each star a slightly different bounce
+            child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+    
+        })
+    
+        // needed but not sure what it does
+        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+    
+        // sets up monster bomb chris
+        var bomb = bombs.create(x, 16, 'chris').setScale(.125);
+        bomb.setBounce(1);
+        bomb.setCollideWorldBounds(true);
+        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+        bomb.allowGravity = false;
+
+        // makes objects collide when touching
+        this.physics.add.collider(stars1, platforms);
+        this.physics.add.collider(stars2, platforms);
+        this.physics.add.collider(bombs, platforms);
+
+        // adds overlap function to collect stars
+        this.physics.add.overlap(player, stars1, collectStar1, null, this);
+        this.physics.add.overlap(player, stars2, collectStar2, null, this);
+   
+        // adds colide function to be killed by bombs
+        this.physics.add.overlap(player, bombs, hitBomb, null, this);
+    }
+    if (score === 1100) {
+        // starts game over function when score reaches x
+        // imeediatly changes the score so new round stops getting called
+        roundsText.setText('You WIN!!')
+        gameOver = true;
+        goCondition = 'WON!!'
+    }
 }
 
-// defines how the stars function
-function collectStar (player, star)
+
+// defines how the stars function when collected
+function collectStar1 (player, star1)
 {
     // makes the stars dissappear
-    star.disableBody(true, true);
-
+    star1.disableBody(true, true);
+    
     //  Add and update the score
     score += 10;
     scoreText.setText('Score: ' + score);
 
-    if (stars1.countActive(true) === 0)
-    {
-        //  A new batch of stars to collect
-        stars1.children.iterate(function (child) {
+}
 
-            child.enableBody(true, child.x, 0, true, true);
-
-        });
-
-        // Jean is not sure what this does
-        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-
-        // defines the function of the bombs
-        var bomb = bombs.create(x, 16, 'bomb');
-        bomb.setBounce(1);
-        bomb.setCollideWorldBounds(true);
-        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-        bomb.allowGravity = false;
-
-    }
-
-    if (stars2.countActive(true) === 0)
-    {
-        //  A new batch of stars to collect
-        stars2.children.iterate(function (child) {
-
-            child.enableBody(true, child.x, 0, true, true);
-
-        });
-
-        // Jean is not sure what this does
-        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-
-        // defines the function of the bombs
-        var bomb = bombs.create(x, 16, 'bomb');
-        bomb.setBounce(1);
-        bomb.setCollideWorldBounds(true);
-        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-        bomb.allowGravity = false;
-
-    }
-
-    if (stars3.countActive(true) === 0)
-    {
-        //  A new batch of stars to collect
-        stars3.children.iterate(function (child) {
-
-            child.enableBody(true, child.x, 0, true, true);
-
-        });
-
-        // Jean is not sure what this does
-        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-
-        // defines the function of the bombs
-        var bomb = bombs.create(x, 16, 'bomb');
-        bomb.setBounce(1);
-        bomb.setCollideWorldBounds(true);
-        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-        bomb.allowGravity = false;
-
-    }
+function collectStar2 (player, star2)
+{
+    // makes the stars dissappear
+    star2.disableBody(true, true);
+    
+    //  Add and update the score
+    score += 10;
+    scoreText.setText('Score: ' + score); 
 
 }
 
-// defines how the bombs function
+// defines how the bombs function when hit
 function hitBomb (player, bomb)
 {
     // stops all movement
@@ -395,4 +608,7 @@ function hitBomb (player, bomb)
 
     // sets up game over
     gameOver = true;
+
+    goCondition = 'LOST!!'
 }
+
