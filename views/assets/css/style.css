@@ -25,6 +25,10 @@ body{
     text-shadow: 0 0 4px #a200ff;
 }
 
+#gameBody{
+    border: red 1px solid;
+}
+
 #userIMG{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(121, 59, 179, .8);
     opacity: 1;
