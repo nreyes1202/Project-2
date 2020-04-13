@@ -1,47 +1,83 @@
-*{
-    box-sizing: border-box;
-    font-family: 'Press Start 2P', cursive;
-   
-}
-
 body{
-    background-color: bisque;
+    background-image: url("../images/backgrounds/horizontalBackgrounds/background.png");
+    background-position: center center;
+    background-color: white;
 }
 
-.selectionBox {
-    /* border: red 1px solid; */
-    float: left;
-    /* clear: right; */
-    width: 33.3%;
-    margin:2px 2px 2px 2px;
-    height: 100px;
-    margin: auto !important;
+@font-face {
+    font-family: 'vgFont'; /*a name to be used later*/
+    src: url('../images/fonts/pdark.ttf'); /*URL to font*/
+}
+#bgImng{
+    padding:3px 3px 3px 3px;
+}
+#nilsen{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(121, 59, 179, 1);
+    background: rgba(120, 220, 218, .1);
+    color:black;
+    text-shadow: 0 0 4px #a200ff;
+}
+
+#imgPostApocalyptic{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(121, 59, 179, 1);
+    background: rgba(120, 220, 218, .1);
+    color:black;
+    text-shadow: 0 0 4px #a200ff;
+}
+
+#gameBody{
+    border: red 1px solid;
+}
+
+#userIMG{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(121, 59, 179, .8);
+    opacity: 1;
+}
+
+#ready{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(121, 59, 179, 1);
+    background: rgba(120, 220, 218, .1);
+    color:black;
+    text-shadow: 0 0 4px #a200ff;
+}
+
+#userCHAR{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(121, 59, 179, .8);
+    background: rgba(120, 220, 218, .1);
+    /* background: rgba(0, 0, 0, .1); */
+}
+#tableActual{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(121, 59, 179, .8);
+    background: rgba(120, 220, 218, .6);
+}
+
+h2{
     text-align: center;
-    color: green;
+    color: black; 
+    text-shadow: 0 0 4px #a200ff;
+    font-family: 'vgFont';
 }
 
 h1{
-    text-align: center;
-    color: red;
+    color: black; 
+    text-shadow: 0 0 4px #a200ff;
+    font-family: 'vgFont';
 }
 
-#tableBox{
-clear: both;
-/* position: relative; */
-float: left;
+#headerBar{
+    /* background-color: steelblue;*/
+    
 }
 
-#table{
-    border: solid red 1px;
-    position: relative;
-    clear: both
+.lead{
+
+    color: black; 
+    text-shadow: 0 0 2px #a200ff;
 }
 
-.clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
-
-
-
+#characterImg{
+    
+}
+#buttonBox{
+    padding:3px 3px 3px 3px;
+}
