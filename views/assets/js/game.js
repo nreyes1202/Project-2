@@ -59,6 +59,10 @@ var rounds = 1;
 var teacher = '';
 var goCondition = '';
 
+// start variables for score object
+var scoreObject;
+var name;
+
 // sets up the game over function to be called at the end
 var gameOver = false;
 
@@ -117,7 +121,7 @@ function preload ()
     this.load.image('banana', 'assets/images/objects/banana.png');
 
     // game over resources
-    this.load.image('scroll', 'assets/images/gui/window3.png');
+    this.load.image('pop', 'assets/images/gui/s_table.png');
     
     // tiles set a
     this.load.image('aTileSq', 'assets/images/tiles/a03a.png');
@@ -316,16 +320,23 @@ function update ()
     {
         // sets up pop up variables outside of functions
         var popUp;
-        popUp = this.add.image(480, 270, 'scroll').setScale(.5);
+        popUp = this.add.image(480, 270, 'pop').setScale(1);
  
         var popupText1;
         var popupText2;
-        popupText1 = this.add.text(350, 232, '', { fontSize: '32px', fill: '#000' });
-        popupText2 = this.add.text(350, 264, '', { fontSize: '32px', fill: '#000' });
+        popupText1 = this.add.text(350, 232, '', { fontSize: '32px', fill: '#fff' });
+        popupText2 = this.add.text(350, 264, '', { fontSize: '32px', fill: '#fff' });
 
         // goCondition either says WON!! or LOST!! depending
-        popupText1.setText('Game Over you')
-        popupText2.setText(goCondition)
+        popupText1.setText('Game Over you');
+        popupText2.setText(goCondition);
+
+        var scoreObject;
+        scoreObject = this.add.text(300, 200, '', { fontSize: '24px', fill: '#fff' });
+       
+        var name;
+        // goCondition either says WON!! or LOST!! depending
+        scoreObject.setText('score: ' + score + ', name: ' + name)
 
         // runs game over function
         return;
@@ -365,7 +376,7 @@ function update ()
         // defines image for when the player is up
         player.anims.play('turn');
     }
-    if (score === 250) {
+    if (score === 240) {
         // starts round 2 when score reaches x
         // imeediatly changes the score so round 2 stops getting called
         score += 10;
@@ -561,12 +572,18 @@ function update ()
         // adds colide function to be killed by bombs
         this.physics.add.overlap(player, bombs, hitBomb, null, this);
     }
-    if (score === 1100) {
+    if (score === 1000) {
         // starts game over function when score reaches x
-        // imeediatly changes the score so new round stops getting called
+        this.physics.pause();
+
+        player.setTint(0x00FF00);
+
         roundsText.setText('You WIN!!')
+
         gameOver = true;
+
         goCondition = 'WON!!'
+        
     }
 }
 
@@ -605,6 +622,13 @@ function hitBomb (player, bomb)
 
     // changes player image
     player.anims.play('turn');
+
+    // var scoreObject;
+    // scoreObject = this.add.text(300, 200, '', { fontSize: '24px', fill: '#fff' });
+   
+    // var name;
+    // // goCondition either says WON!! or LOST!! depending
+    // scoreObject.setText('score: ' + score + ', name: ' + name)
 
     // sets up game over
     gameOver = true;
