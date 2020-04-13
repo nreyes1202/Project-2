@@ -1,9 +1,79 @@
 body{
-    background-color: steelblue;
+    background-image: url("../images/backgrounds/horizontalBackgrounds/background.png");
+    background-position: center center;
+    background-color: white;
 }
-/* h1{
-    text-align: center;
-} */
+
+@font-face {
+    font-family: 'vgFont'; /*a name to be used later*/
+    src: url('../images/fonts/pdark.ttf'); /*URL to font*/
+}
+#bgImng{
+    padding:3px 3px 3px 3px;
+}
+#nilsen{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(121, 59, 179, 1);
+    background: rgba(120, 220, 218, .1);
+    color:black;
+    text-shadow: 0 0 4px #a200ff;
+}
+
+#imgPostApocalyptic{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(121, 59, 179, 1);
+    background: rgba(120, 220, 218, .1);
+    color:black;
+    text-shadow: 0 0 4px #a200ff;
+}
+
+#userIMG{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(121, 59, 179, .8);
+    opacity: 1;
+}
+
+#ready{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(121, 59, 179, 1);
+    background: rgba(120, 220, 218, .1);
+    color:black;
+    text-shadow: 0 0 4px #a200ff;
+}
+
+#userCHAR{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(121, 59, 179, .8);
+    background: rgba(120, 220, 218, .1);
+    /* background: rgba(0, 0, 0, .1); */
+}
+#tableActual{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(121, 59, 179, .8);
+    background: rgba(120, 220, 218, .6);
+}
+
 h2{
     text-align: center;
+    color: black; 
+    text-shadow: 0 0 4px #a200ff;
+    font-family: 'vgFont';
+}
+
+h1{
+    color: black; 
+    text-shadow: 0 0 4px #a200ff;
+    font-family: 'vgFont';
+}
+
+#headerBar{
+    /* background-color: steelblue;*/
+    
+}
+
+.lead{
+
+    color: black; 
+    text-shadow: 0 0 2px #a200ff;
+}
+
+#characterImg{
+    
+}
+#buttonBox{
+    padding:3px 3px 3px 3px;
 }

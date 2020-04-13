@@ -35,71 +35,75 @@
     </div>
 
 </head>
+<header>
 
-<body>
-    <div class="jumbotron jumbotron-fluid">
+    <div id="headerBar">
         <div class="container">
-            <h1 class="display-4">Bootcamp Attack </h1>
-            <p class="lead">Maybe you can beat the TAs... but Chris?</p>
+            <h1 class="display-4"> Bootcamp Attack </h1>
+            <p class="lead"> <i>MAYBE</i> you can beat the TAs... but do you have what it takes to defeat Chris?</p>
         </div>
     </div>
-    <div class="container img-thumbnail">
-        <div id='tableBox' class="col-sm img-thumbnail">
-            <table class="table table-sm img-thumbnail">
-                <thead>
-                    <tr>
-                        <th scope="col">Rank</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Score</th>
+</header>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>437</td>
+<body>
+    <div id="mainBox" class="container">
+        <div class="row">
+            <div id='tableBox' class="col-sm">
+                <table class="table table-sm img-thumbnail rounded table-striped" id="tableActual">
+                    <thead>
+                        <tr>
+                            <th scope="col">Rank</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Score</th>
 
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>278</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Jean</td>
+                            <td>437</td>
 
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry the Bird</td>
-                        <td>14</td>
-                    </tr>
-                </tbody>
-            </table>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Nilsen</td>
+                            <td>378</td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Derrick</td>
+                            <td>014</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="row img-thumbnail ">
-            <div id='characterImg' class="selectionBox col-sm img-thumbnail">
+        <div class="row">
+            <div id='characterImg' class="selectionBox col-4">
+                <h2> Character:</h2>
                 <img src="../views/assets/images/sprites/aliensSprite/alien/PNG/alien_predator_mask/predatormask__0000_idle_1.png"
-                    class="img-fluid img-thumbnail rounded mx-auto d-block" alt="Responsive image">
-                <h2> Character</h2>
+                    class="img-fluid  mx-auto d-block" alt="Responsive image" id="userCHAR">
                 <!-- <button type="button" id='jean' class="btn btn-primary">Jean</button> -->
-                <button href="#" type="button" id='nilsen'
-                    class="btn btn-primary mx-auto d-block active">Nilsen</button>
+                <button type="button" id='nilsen' class="btn btn-outline-dark mx-auto d-block">Elliot</button>
                 <!-- <button type="button" id='derrick' class="btn btn-primary">Derrick</button> -->
             </div>
-            <div id='bgImg' class='selectionBox col-sm img-thumbnail'>
-                <img src="../views/assets/images/backgrounds/parallaxBackground/bngAspectIndexHtml.png"
-                    class="img-fluid img-thumbnail rounded mx-auto d-block" alt="Responsive image" style="max-height: 400px;">
+            <div id='bgImg' class='selectionBox col-8 img'>
                 <h2> Level</h2>
+                <img src="../views/assets/images/backgrounds/parallaxBackground/bgnIndex2.png" id="userIMG"
+                    class="img-fluid  mx-auto d-block" alt="Responsive image" style="max-height: 400px;">
                 <!-- <button type="button" id='imgMountain' class="btn btn-primary">Mountains</button> -->
                 <!-- <button type="button" id='imgForest' class="btn btn-primary">Forest</button> -->
-                <button type="button" id='imgPostApocalyptic' class="btn btn-primary mx-auto d-block">Post
+                <button type="button" id='imgPostApocalyptic' class="btn btn-outline-dark mx-auto d-block">Post
                     Apocalyptic</button>
             </div>
         </div>
-    </div>
-    <div class="container img-thumbnail">
-        <div class="col-sm img-thumbnail">
-            <button type="button" id='ready' class="btn btn-primary btn-lg mx-auto d-block btn-block">Start
-                Game</button>
+        <div class="container" id="buttonBox">
+            <div class="col-sm">
+                <button type="button" id='ready' class="btn btn-outline-dark btn-lg mx-auto d-block">Start
+                    Game</button>
+            </div>
         </div>
     </div>
     <script src='views.js'></script>
