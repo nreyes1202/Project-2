@@ -14,7 +14,7 @@
     <link rel='meyer-reset' type='reset' href='assets/css/reset.css'>
     <link rel='stylesheet' href='assets/css/style.css'>
 
-    <title>Attack of Kurt</title>
+    <title>Bootcamp Attack</title>
 
     <div id='containerHeader'></div>
     <div id='containerBody'>
@@ -37,45 +37,71 @@
 </head>
 
 <body>
-    <h1>Attack of Kurt</h1>
-
-    <div>
-
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Bootcamp Attack </h1>
+            <p class="lead">Maybe you can beat the TAs... but Chris?</p>
+        </div>
     </div>
+    <div class="container img-thumbnail">
+        <div id='tableBox' class="col-sm img-thumbnail">
+            <table class="table table-sm img-thumbnail">
+                <thead>
+                    <tr>
+                        <th scope="col">Rank</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Score</th>
 
-    <div id='characterImg' class="selectionBox">
-        <img src="../views/assets/images/sprites/aliensSprite/alien/PNG/alien_predator_mask/predatormask__0000_idle_1.png"
-            alt="Alien">
-        <h2> Character</h2>
-        <!-- <button type="button" id='jean' class="btn btn-primary">Jean</button> -->
-        <button type="button" id='nilsen' class="btn btn-primary">Nilsen</button>
-        <!-- <button type="button" id='derrick' class="btn btn-primary">Derrick</button> -->
-    </div>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>437</td>
 
-    <div id='bgImg' class='selectionBox'>
-        <img src="../views/assets/images/backgrounds/parallaxBackground/background.png" alt="Wasteland" height="398">
-        <h2> Level</h2>
-        <!-- <button type="button" id='imgMountain' class="btn btn-primary">Mountains</button> -->
-        <!-- <button type="button" id='imgForest' class="btn btn-primary">Forest</button> -->
-        <button type="button" id='imgPostApocalyptic' class="btn btn-primary">Post Apocalyptic</button>
-    </div>
-    <div id=tableBox>
-        <table id='table' class='selectionBox' style="width:100%">
-            <tr>
-                <th>Name</th>
-                <th>Score</th>
-            </tr>
-            <tr>
-                <td>Jill</td>
-                <td>50</td>
-            </tr>
-            <tr>
-                <td>Eve</td>
-                <td>94</td>
-            </tr>
-        </table>
-    </div>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>278</td>
 
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry the Bird</td>
+                        <td>14</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row img-thumbnail ">
+            <div id='characterImg' class="selectionBox col-sm img-thumbnail">
+                <img src="../views/assets/images/sprites/aliensSprite/alien/PNG/alien_predator_mask/predatormask__0000_idle_1.png"
+                    class="img-fluid img-thumbnail rounded mx-auto d-block" alt="Responsive image">
+                <h2> Character</h2>
+                <!-- <button type="button" id='jean' class="btn btn-primary">Jean</button> -->
+                <button href="#" type="button" id='nilsen'
+                    class="btn btn-primary mx-auto d-block active">Nilsen</button>
+                <!-- <button type="button" id='derrick' class="btn btn-primary">Derrick</button> -->
+            </div>
+            <div id='bgImg' class='selectionBox col-sm img-thumbnail'>
+                <img src="../views/assets/images/backgrounds/parallaxBackground/bngAspectIndexHtml.png"
+                    class="img-fluid img-thumbnail rounded mx-auto d-block" alt="Responsive image" style="max-height: 400px;">
+                <h2> Level</h2>
+                <!-- <button type="button" id='imgMountain' class="btn btn-primary">Mountains</button> -->
+                <!-- <button type="button" id='imgForest' class="btn btn-primary">Forest</button> -->
+                <button type="button" id='imgPostApocalyptic' class="btn btn-primary mx-auto d-block">Post
+                    Apocalyptic</button>
+            </div>
+        </div>
+    </div>
+    <div class="container img-thumbnail">
+        <div class="col-sm img-thumbnail">
+            <button type="button" id='ready' class="btn btn-primary btn-lg mx-auto d-block btn-block">Start
+                Game</button>
+        </div>
+    </div>
     <script src='views.js'></script>
 </body>
 

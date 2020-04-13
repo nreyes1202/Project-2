@@ -1,47 +1,9 @@
-*{
-    box-sizing: border-box;
-    font-family: 'Press Start 2P', cursive;
-   
-}
-
 body{
-    background-color: bisque;
+    background-color: steelblue;
 }
-
-.selectionBox {
-    /* border: red 1px solid; */
-    float: left;
-    /* clear: right; */
-    width: 33.3%;
-    margin:2px 2px 2px 2px;
-    height: 100px;
-    margin: auto !important;
+/* h1{
     text-align: center;
-    color: green;
-}
-
-h1{
+} */
+h2{
     text-align: center;
-    color: red;
 }
-
-#tableBox{
-clear: both;
-/* position: relative; */
-float: left;
-}
-
-#table{
-    border: solid red 1px;
-    position: relative;
-    clear: both
-}
-
-.clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
-
-
-
