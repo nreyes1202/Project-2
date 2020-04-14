@@ -18,13 +18,13 @@ $('#saveBTN').on('click', function (event) {
     //     updatedAt: "",
     // }
 
-    $.post("/api/characters", 
-    {
-        id: "",
-        username: username,
-        highScore: score,
-        createdAt: "",
-        updatedAt: "",
+    $.post("/api/characters/", 
+    {username, score
+        // id: "",
+        // username: username,
+        // highScore: score,
+        // createdAt: "",
+        // updatedAt: "",
     }
     );
 

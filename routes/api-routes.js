@@ -18,8 +18,8 @@ module.exports = function (app) {
   app.post("/api/characters/", function (req, res) {
     db.Character.create({
       id: "",
-      username: "",
-      highScore: 0,
+      username: "Mike",
+      highScore: 230,
       createdAt: "",
       updatedAt: ""
     })
