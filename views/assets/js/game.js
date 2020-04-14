@@ -2,6 +2,8 @@
 document.getElementById('nameForm').style.display = 'none';
 document.getElementById('saveBTN').style.display = 'none';
 
+
+
 // makes an object out of user Data
 $('#saveBTN').on('click', function (event) {
     event.preventDefault();
@@ -22,6 +24,7 @@ var config = {
     // sets game size
     width: 960,
     height: 540,
+    // creates a dom element div
     // defines the physics and gravity of the game
     physics: {
         default: 'arcade',
@@ -697,4 +700,6 @@ function hitBomb (player, bomb)
 
     goCondition = 'LOST!!'
 }
+
+
 
