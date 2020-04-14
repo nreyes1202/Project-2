@@ -10,16 +10,16 @@
   "test": {
     "username": "root",
     "password": "root",
-    "database": "database_test",
+    "database": "characters",
     "host": "127.0.0.1",
     "port": 3306,
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": "root",
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "username": "g7z1rmcuei48ii0u",
+    "password": "ql31zgcva2p2nf3l",
+    "database": "lvd229dgbpltejrt",
+    "host": "wp433upk59nnhpoh.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "port": 3306,
     "dialect": "mysql"
   }
