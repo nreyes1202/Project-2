@@ -1,6 +1,19 @@
-// attaching views inorder to get imports
-// const viewsImport = require('.../views');
-// CRUD/post routes
+document.getElementById('nameForm').style.display = 'none';
+document.getElementById('saveBTN').style.display = 'none';
+
+
+$('#saveBTN').on('click', function (event) {
+    event.preventDefault();
+
+    var userName = $('#nameForm').val().trim();
+
+    var userData = {
+        usersName: userName,
+        usersScore: score,
+    };
+
+    console.log(userData);
+});
 
 var config = {
     type: Phaser.AUTO,
@@ -59,6 +72,10 @@ var rounds = 1;
 // sets up variables for text
 var teacher = '';
 var goCondition = '';
+
+var titleTA = document.getElementById('titleTA');
+var titleTAtxt = '?';
+titleTA.textContent = titleTAtxt;
 
 // start variables for score object
 var scoreObject;
@@ -325,19 +342,46 @@ function update ()
  
         var popupText1;
         var popupText2;
-        popupText1 = this.add.text(350, 232, '', { fontSize: '32px', fill: '#fff' });
-        popupText2 = this.add.text(350, 264, '', { fontSize: '32px', fill: '#fff' });
+        popupText1 = this.add.text(358, 200, '', { fontSize: '32px', fill: '#fff' });
+        popupText2 = this.add.text(358, 232, '', { fontSize: '32px', fill: '#fff' });
 
         // goCondition either says WON!! or LOST!! depending
         popupText1.setText('Game Over you');
         popupText2.setText(goCondition);
 
+        document.getElementById('nameForm').style.display = 'block';
+        document.getElementById('saveBTN').style.display = 'block';
+
         var scoreObject;
-        scoreObject = this.add.text(300, 200, '', { fontSize: '24px', fill: '#fff' });
+        scoreObject = this.add.text(284, 168, '', { fontSize: '24px', fill: '#fff' });
        
         var name;
         // goCondition either says WON!! or LOST!! depending
         scoreObject.setText('score: ' + score + ', name: ' + name)
+
+        var formText1;
+        formText1 = this.add.text(284, 264, '', { fontSize: '24px', fill: '#fff' });
+        formText1.setText('fill out the form on the -->');
+        
+        var formText2;
+        formText2 = this.add.text(284, 296, '', { fontSize: '24px', fill: '#fff' });
+        formText2.setText('right to save your score -->');
+
+        var titleWord = document.getElementById('title');
+        var titleWordTxt = 'Save Stats';
+        titleWord.textContent = titleWordTxt;
+
+        var scoreWord = document.getElementById("scoreWord");
+        var scoreWordTxt = 'Score: ';
+        scoreWord.textContent = scoreWordTxt;
+
+        var gameScore = document.getElementById("gameScore");
+        var  yourScore = score;
+        gameScore.textContent = yourScore
+
+        var nameWords = document.getElementById("nameWords");
+        var nameWordsTxt = 'Enter your name here';
+        nameWords.textContent = nameWordsTxt;
 
         // runs game over function
         return;
@@ -391,6 +435,9 @@ function update ()
         // changes the title text for the round
         var teacher = 'Mike!';
         attackText.setText('Attack of ' + teacher)
+
+        var titleTAtxt = ' Mike!';
+        titleTA.textContent = titleTAtxt;
 
         // loads in new stars with a slime skin
         stars1 = this.physics.add.group({
@@ -457,6 +504,9 @@ function update ()
         var teacher = 'Kurt!';
         attackText.setText('Attack of ' + teacher)
 
+        var titleTAtxt = ' Kurt!';
+        titleTA.textContent = titleTAtxt;
+
         // new star coins
         stars1 = this.physics.add.group({
             key: 'coin',
@@ -519,6 +569,9 @@ function update ()
         // changes title text
         var teacher = 'Chris!';
         attackText.setText('Attack of ' + teacher)
+
+        var titleTAtxt = ' Chris!';
+        titleTA.textContent = titleTAtxt;
 
         // adds in banana's as stars
         stars1 = this.physics.add.group({
