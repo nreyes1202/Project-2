@@ -1,6 +1,6 @@
 
 // Dependencies
-// Requiring our model
+// Requiring our models
 var db = require("../models");
 
 // Routes
@@ -15,8 +15,14 @@ module.exports = function (app) {
   });
 
   // POST route for saving a new username
-  app.post("/api/characters", function (req, res) {
-    db.Character.create({})
+  app.post("/api/characters/", function (req, res) {
+    db.Character.create({
+      id: "",
+      username: "",
+      highScore: 0,
+      createdAt: "",
+      updatedAt: ""
+    })
       .then(function (dbCharacter) {
         res.json(dbCharacter);
       });

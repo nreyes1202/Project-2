@@ -8,14 +8,28 @@ document.getElementById('saveBTN').style.display = 'none';
 $('#saveBTN').on('click', function (event) {
     event.preventDefault();
 
-    var userName = $('#nameForm').val().trim();
+    var username = $('#nameForm').val().trim();
 
-    var userData = {
-        usersName: userName,
-        usersScore: score,
-    };
+    // var userData = {
+    //     id: "",
+    //     username: username,
+    //     highScore: score,
+    //     createdAt: "",
+    //     updatedAt: "",
+    // }
 
-    console.log(userData);
+    $.post("/api/characters", 
+    {
+        id: "",
+        username: username,
+        highScore: score,
+        createdAt: "",
+        updatedAt: "",
+    }
+    );
+
+    console.log(username);
+    console.log(score);
 });
 
 // configs the basics of the game
@@ -94,9 +108,8 @@ var gameOver = false;
 var game = new Phaser.Game(config);
 
 // preloads all the images
-function preload ()
-{
-   
+function preload() {
+
     // function backgroundForest() {
     //     this.load.image('background', 'assets/images/backgrounds/magicForestBackground/background.png');
     //     console.log('userImg is a forest')
@@ -131,7 +144,7 @@ function preload ()
     this.load.image('background', 'assets/images/backgrounds/parallaxBackground/background.png');
     this.load.image('star', 'assets/images/star.png');
     this.load.image('alien', 'assets/images/sprites/aliensSprite/alien/PNG/spriteSheet.png', { frameWidth: 230, frameHeight: 398 });
-    
+
     // round 2 resources
     this.load.image('mike', 'assets/images/monsterBombs/mike.png');
     this.load.image('slime', 'assets/images/objects/slime.png');
@@ -146,7 +159,7 @@ function preload ()
 
     // game over resources
     this.load.image('pop', 'assets/images/gui/s_table.png');
-    
+
     // tiles set a
     this.load.image('aTileSq', 'assets/images/tiles/a03a.png');
     this.load.image('aTileSq2', 'assets/images/tiles/a03b.png');
@@ -163,7 +176,7 @@ function preload ()
     this.load.image('cTileSq2', 'assets/images/tiles/c02c.png');
     this.load.image('cBridgePost', 'assets/images/tiles/cBridge-4.png');
     this.load.image('cDoor', 'assets/images/tiles/cDoor.png');
-    
+
     // tile set e
     this.load.image('eTileSqTopped', 'assets/images/tiles/e01alt.png');
     this.load.image('eTileSq', 'assets/images/tiles/e02.png');
@@ -173,8 +186,7 @@ function preload ()
 }
 
 // creates most of the game elements
-function create ()
-{
+function create() {
     // adds in background image
     this.add.image(480, 270, 'background').setScale(.5)
 
@@ -189,7 +201,7 @@ function create ()
     attackText = this.add.text(350, 32, '', { fontSize: '32px', fill: '#000' });
     var teacher = '?';
     attackText.setText('Attack of ' + teacher)
-    
+
     // c bridge post bottom left
     this.add.image(412, 508, 'cBridgePost').setScale(1);
     this.add.image(412, 444, 'cBridgePost').setScale(1);
@@ -200,7 +212,7 @@ function create ()
     this.add.image(96, 188, 'cBridgePost').setScale(1);
     this.add.image(96, 124, 'cBridgePost').setScale(1);
     this.add.image(96, 60, 'cBridgePost').setScale(1);
- 
+
     // c post bottom right
     this.add.image(750, 412, 'cBridgePost').setScale(1);
     this.add.image(750, 348, 'cBridgePost').setScale(1);
@@ -214,23 +226,23 @@ function create ()
 
     // adds animations for player movements
     this.anims.create({
-        key:'left',
-        frames: [ { key: 'alien', frame: 0 } ],
+        key: 'left',
+        frames: [{ key: 'alien', frame: 0 }],
         frameRate: 20,
         repeat: -1
-        });
+    });
     this.anims.create({
-        key:'turn',
-        frames: [ { key: 'alien', frame: 0 } ],
+        key: 'turn',
+        frames: [{ key: 'alien', frame: 0 }],
         frameRate: 20,
         repeat: -1
-        })
+    })
     this.anims.create({
-        key:'right',
-        frames: [ { key: 'alien', frame: 0 } ],
+        key: 'right',
+        frames: [{ key: 'alien', frame: 0 }],
         frameRate: 20,
         repeat: -1
-        })
+    })
 
     // turns some images into platforms
     platforms = this.physics.add.staticGroup();
@@ -244,7 +256,7 @@ function create ()
     platforms.create(96, 508, 'cTileBroke').setScale(1);
     platforms.create(224, 508, 'cTileSq2').setScale(1);
     platforms.create(288, 508, 'cTileBroke').setScale(1);
-      
+
     // a tiles middle left platform
     platforms.create(32, 252, 'aTileSq').setScale(1);
     platforms.create(96, 252, 'aTileSq2').setScale(1);
@@ -293,7 +305,7 @@ function create ()
         key: 'star',
         repeat: 12,
         setXY: { x: 46, y: 0, stepX: 70 },
-        
+
     })
 
     // adds bottom row of stars
@@ -301,7 +313,7 @@ function create ()
         key: 'star',
         repeat: 13,
         setXY: { x: 16, y: 320, stepX: 70 }
-      
+
     })
 
     // makes stars bouncy
@@ -337,15 +349,13 @@ function create ()
 }
 
 // checks the game constantly for update functions
-function update ()
-{
+function update() {
 
-    if (gameOver)
-    {
+    if (gameOver) {
         // sets up pop up variables outside of functions
         var popUp;
         popUp = this.add.image(480, 270, 'pop').setScale(1);
- 
+
         // creates pop up text
         var popupText1;
         var popupText2;
@@ -387,7 +397,7 @@ function update ()
         scoreWord.textContent = scoreWordTxt;
 
         var gameScore = document.getElementById("gameScore");
-        var  yourScore = score;
+        var yourScore = score;
         gameScore.textContent = yourScore
 
         var nameWords = document.getElementById("nameWords");
@@ -397,36 +407,31 @@ function update ()
         // runs game over function
         return;
     }
-    if (cursors.left.isDown)
-    {
+    if (cursors.left.isDown) {
         // moves player left
         player.setVelocityX(-160);
         // changes player animation
         player.anims.play('left', true);
     }
-    else if (cursors.right.isDown)
-    {
+    else if (cursors.right.isDown) {
         // moves player right
         player.setVelocityX(160);
         // changes player animation
-        player.anims.play('right', true);        
+        player.anims.play('right', true);
     }
-    else
-    {
+    else {
         // defines when the player is not moving
         player.setVelocityX(0);
         // defines image for when the player is not moving
         player.anims.play('turn');
     }
-    if (cursors.up.isDown)
-    {   
+    if (cursors.up.isDown) {
         // moves the player up
         player.setVelocityY(-330);
         // defines image for when the player is up
-        player.anims.play('turn');   
+        player.anims.play('turn');
     }
-    if (cursors.down.isDown)
-    {   
+    if (cursors.down.isDown) {
         // moves the player down
         player.setVelocityY(330);
         // defines image for when the player is up
@@ -440,7 +445,7 @@ function update ()
 
         // changes the rounds counter
         rounds = 2;
-        roundsText.setText('Round: ' + rounds); 
+        roundsText.setText('Round: ' + rounds);
         console.log('Round 2');
 
         // changes the title text for the round
@@ -454,35 +459,35 @@ function update ()
         stars1 = this.physics.add.group({
             key: 'slime',
             repeat: 12,
-            setXY: { x: 46, y: 0, stepX: 70 }, 
+            setXY: { x: 46, y: 0, stepX: 70 },
         })
-    
+
         // adds bottom row of stars with a slime skin
         stars2 = this.physics.add.group({
             key: 'slime',
             repeat: 13,
             setXY: { x: 16, y: 320, stepX: 70 }
-          
+
         })
-    
+
         // sets up stars bounce
         stars1.children.iterate(function (child) {
-    
+
             //  Give each star a slightly different bounce
             child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-    
+
         })
-    
+
         stars2.children.iterate(function (child) {
-    
+
             //  Give each star a slightly different bounce
             child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-    
+
         })
-    
+
         // I do not know what this does but is needed here
         var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-    
+
         // makes new monster bomb with a mike skin
         var bomb = bombs.create(x, 16, 'mike').setScale(.125);
         bomb.setBounce(1);
@@ -498,7 +503,7 @@ function update ()
         // adds overlap function to collect stars
         this.physics.add.overlap(player, stars1, collectStar1, null, this);
         this.physics.add.overlap(player, stars2, collectStar2, null, this);
-   
+
         // adds colide function to be killed by bombs
         this.physics.add.overlap(player, bombs, hitBomb, null, this);
 
@@ -509,7 +514,7 @@ function update ()
         score += 10;
         scoreText.setText('Score: ' + score);
         rounds = 3;
-        roundsText.setText('Round: ' + rounds); 
+        roundsText.setText('Round: ' + rounds);
 
         // changes title text
         var teacher = 'Kurt!';
@@ -522,34 +527,34 @@ function update ()
         stars1 = this.physics.add.group({
             key: 'coin',
             repeat: 12,
-            setXY: { x: 46, y: 0, stepX: 70 },   
+            setXY: { x: 46, y: 0, stepX: 70 },
         })
-    
+
         // adds bottom row of star coins
         stars2 = this.physics.add.group({
             key: 'coin',
             repeat: 13,
-            setXY: { x: 16, y: 320, stepX: 70 } 
+            setXY: { x: 16, y: 320, stepX: 70 }
         })
-    
+
         // adds star coin bounce
         stars1.children.iterate(function (child) {
-    
+
             //  Give each star a slightly different bounce
             child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-    
+
         })
-    
+
         stars2.children.iterate(function (child) {
-    
+
             //  Give each star a slightly different bounce
             child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-    
+
         })
-    
+
         // needed but not sure what it does
         var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-    
+
         // sets up monster bomb kurt
         var bomb = bombs.create(x, 16, 'kurt').setScale(.125);
         bomb.setBounce(1);
@@ -575,7 +580,7 @@ function update ()
         score += 10;
         scoreText.setText('Score: ' + score);
         rounds = 4;
-        roundsText.setText('Round: ' + rounds); 
+        roundsText.setText('Round: ' + rounds);
 
         // changes title text
         var teacher = 'Chris!';
@@ -589,35 +594,35 @@ function update ()
             key: 'banana',
             repeat: 12,
             setXY: { x: 46, y: 0, stepX: 70 },
-            
+
         })
-    
+
         // adds bottom row of star banana's
         stars2 = this.physics.add.group({
             key: 'banana',
             repeat: 13,
             setXY: { x: 16, y: 320, stepX: 70 }
-          
+
         })
-    
+
         // sets up banana star bounce
         stars1.children.iterate(function (child) {
-    
+
             //  Give each star a slightly different bounce
             child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-    
+
         })
-    
+
         stars2.children.iterate(function (child) {
-    
+
             //  Give each star a slightly different bounce
             child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-    
+
         })
-    
+
         // needed but not sure what it does
         var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-    
+
         // sets up monster bomb chris
         var bomb = bombs.create(x, 16, 'chris').setScale(.125);
         bomb.setBounce(1);
@@ -633,7 +638,7 @@ function update ()
         // adds overlap function to collect stars
         this.physics.add.overlap(player, stars1, collectStar1, null, this);
         this.physics.add.overlap(player, stars2, collectStar2, null, this);
-   
+
         // adds colide function to be killed by bombs
         this.physics.add.overlap(player, bombs, hitBomb, null, this);
     }
@@ -648,37 +653,34 @@ function update ()
         gameOver = true;
 
         goCondition = 'WON!!'
-        
+
     }
 }
 
 
 // defines how the stars function when collected
-function collectStar1 (player, star1)
-{
+function collectStar1(player, star1) {
     // makes the stars dissappear
     star1.disableBody(true, true);
-    
+
     //  Add and update the score
     score += 10;
     scoreText.setText('Score: ' + score);
 
 }
 
-function collectStar2 (player, star2)
-{
+function collectStar2(player, star2) {
     // makes the stars dissappear
     star2.disableBody(true, true);
-    
+
     //  Add and update the score
     score += 10;
-    scoreText.setText('Score: ' + score); 
+    scoreText.setText('Score: ' + score);
 
 }
 
 // defines how the bombs function when hit
-function hitBomb (player, bomb)
-{
+function hitBomb(player, bomb) {
     // stops all movement
     this.physics.pause();
 
@@ -690,7 +692,7 @@ function hitBomb (player, bomb)
 
     // var scoreObject;
     // scoreObject = this.add.text(300, 200, '', { fontSize: '24px', fill: '#fff' });
-   
+
     // var name;
     // // goCondition either says WON!! or LOST!! depending
     // scoreObject.setText('score: ' + score + ', name: ' + name)
