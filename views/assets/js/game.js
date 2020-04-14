@@ -79,9 +79,9 @@ var teacher = '';
 var goCondition = '';
 
 // changes the title
-var titleTA = document.getElementById('titleTA');
-var titleTAtxt = '?';
-titleTA.textContent = titleTAtxt;
+// var titleTA = document.getElementById('titleTA');
+// var titleTAtxt = '?';
+// titleTA.textContent = titleTAtxt;
 
 // start variables for score object
 var scoreObject;
@@ -349,8 +349,8 @@ function update ()
         // creates pop up text
         var popupText1;
         var popupText2;
-        popupText1 = this.add.text(358, 200, '', { fontSize: '32px', fill: '#fff' });
-        popupText2 = this.add.text(358, 232, '', { fontSize: '32px', fill: '#fff' });
+        popupText1 = this.add.text(358, 216, '', { fontSize: '32px', fill: '#fff' });
+        popupText2 = this.add.text(358, 248, '', { fontSize: '32px', fill: '#fff' });
 
         // goCondition either says WON!! or LOST!! depending
         popupText1.setText('Game Over you');
@@ -358,20 +358,20 @@ function update ()
 
         // makes the score and name(which is undefined) into an object
         var scoreObject;
-        scoreObject = this.add.text(284, 168, '', { fontSize: '24px', fill: '#fff' });
+        scoreObject = this.add.text(410, 168, '', { fontSize: '24px', fill: '#fff' });
         var name;
 
         // goCondition either says WON!! or LOST!! depending
-        scoreObject.setText('score: ' + score + ', name: ' + name)
+        scoreObject.setText('score: ' + score)
 
         // more pop up text
         var formText1;
-        formText1 = this.add.text(284, 264, '', { fontSize: '24px', fill: '#fff' });
-        formText1.setText('fill out the form on the -->');
+        formText1 = this.add.text(316, 296, '', { fontSize: '24px', fill: '#fff' });
+        formText1.setText('fill out the form above');
         
         var formText2;
-        formText2 = this.add.text(284, 296, '', { fontSize: '24px', fill: '#fff' });
-        formText2.setText('right to save your score -->');
+        formText2 = this.add.text(316, 328, '', { fontSize: '24px', fill: '#fff' });
+        formText2.setText('to save your score.');
 
         // populates the hidden html
         document.getElementById('nameForm').style.display = 'block';
@@ -447,8 +447,8 @@ function update ()
         var teacher = 'Mike!';
         attackText.setText('Attack of ' + teacher)
 
-        var titleTAtxt = ' Mike!';
-        titleTA.textContent = titleTAtxt;
+        // var titleTAtxt = ' Mike!';
+        // titleTA.textContent = titleTAtxt;
 
         // loads in new stars with a slime skin
         stars1 = this.physics.add.group({
@@ -515,8 +515,8 @@ function update ()
         var teacher = 'Kurt!';
         attackText.setText('Attack of ' + teacher)
 
-        var titleTAtxt = ' Kurt!';
-        titleTA.textContent = titleTAtxt;
+        // var titleTAtxt = ' Kurt!';
+        // titleTA.textContent = titleTAtxt;
 
         // new star coins
         stars1 = this.physics.add.group({
@@ -581,8 +581,8 @@ function update ()
         var teacher = 'Chris!';
         attackText.setText('Attack of ' + teacher)
 
-        var titleTAtxt = ' Chris!';
-        titleTA.textContent = titleTAtxt;
+        // var titleTAtxt = ' Chris!';
+        // titleTA.textContent = titleTAtxt;
 
         // adds in banana's as stars
         stars1 = this.physics.add.group({
