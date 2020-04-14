@@ -26,7 +26,7 @@ body{
 }
 
 #gameBody{
-    border: red 1px solid;
+    
 }
 
 #userIMG{
@@ -64,6 +64,13 @@ h1{
     font-family: 'vgFont';
 }
 
+h3{
+    text-align: left;
+    color: black; 
+    text-shadow: 0 0 4px #a200ff;
+    font-family: 'vgFont';
+}
+
 #headerBar{
     /* background-color: steelblue;*/
     
@@ -73,6 +80,18 @@ h1{
 
     color: black; 
     text-shadow: 0 0 2px #a200ff;
+}
+
+.formStyle {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(121, 59, 179, .8);
+    background: rgba(120, 220, 218, .1);
+}
+
+.buttonStyle {
+    color: black; 
+    text-shadow: 0 0 2px #a200ff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(121, 59, 179, .8);
+    background: rgba(120, 220, 218, .1);
 }
 
 #characterImg{
