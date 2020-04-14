@@ -3,14 +3,31 @@ $(document).ready(function () {
     // Link test
     console.log('views.js is linked!');
 
-    
+    // function to pull only username and score from database
+
     $.get("/api/characters")
-    .then(function(data){
-        console.log(data)
-    })
-    
-    
+        .then(function (data) {
+            console.log(data);
+            for (var i = 0; i < data.length; i++) {
+                var nameList = data[i].username;
+                console.log(nameList);
+                var scoreList = data[i].highScore;
+                console.log(scoreList);
+                console.log(nameList.username);
+                var newRow = $("<tr>").append(
+                    $("<td>").html(nameList),
+                    $("<td>").html(scoreList)
+                  //  $("<td>").text(value.importance)
+                );
+                
+                //Append the new row to the table
+                $("#tableActual > #tableBody").append(newRow);
+            };
+        });
+
 });
+
+
 
 
 // early attempts at multiple character with on click
@@ -32,7 +49,7 @@ $(document).ready(function () {
 
 //     var userSprite = $(this).attr('id');
 
-   
+
 //     console.log("userSprite = " + userSprite);
 
 // });
@@ -63,7 +80,7 @@ $(document).ready(function () {
 
 //     var userImg = $(this).attr('id');
 
-   
+
 //     console.log("userImg = " + userImg);
 
 // });
@@ -76,7 +93,7 @@ $(document).ready(function () {
 //     console.log("userImg = " + userImg );
 
 // });
-      
 
-   
+
+
 
