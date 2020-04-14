@@ -13,13 +13,13 @@ $(document).ready(function () {
                 console.log(nameList);
                 var scoreList = data[i].highScore;
                 console.log(scoreList);
-                console.log(nameList.username);
+                console.log(nameList);
                 var newRow = $("<tr>").append(
                     $("<td>").html(nameList),
                     $("<td>").html(scoreList)
-                  //  $("<td>").text(value.importance)
+                    //  $("<td>").text(value.importance)
                 );
-                
+
                 //Append the new row to the table
                 $("#tableActual > #tableBody").append(newRow);
             };
