@@ -1,7 +1,8 @@
+// hides game.html elements untill the game ends
 document.getElementById('nameForm').style.display = 'none';
 document.getElementById('saveBTN').style.display = 'none';
 
-
+// makes an object out of user Data
 $('#saveBTN').on('click', function (event) {
     event.preventDefault();
 
@@ -15,6 +16,7 @@ $('#saveBTN').on('click', function (event) {
     console.log(userData);
 });
 
+// configs the basics of the game
 var config = {
     type: Phaser.AUTO,
     // sets game size
@@ -73,6 +75,7 @@ var rounds = 1;
 var teacher = '';
 var goCondition = '';
 
+// changes the title
 var titleTA = document.getElementById('titleTA');
 var titleTAtxt = '?';
 titleTA.textContent = titleTAtxt;
@@ -340,6 +343,7 @@ function update ()
         var popUp;
         popUp = this.add.image(480, 270, 'pop').setScale(1);
  
+        // creates pop up text
         var popupText1;
         var popupText2;
         popupText1 = this.add.text(358, 200, '', { fontSize: '32px', fill: '#fff' });
@@ -349,16 +353,15 @@ function update ()
         popupText1.setText('Game Over you');
         popupText2.setText(goCondition);
 
-        document.getElementById('nameForm').style.display = 'block';
-        document.getElementById('saveBTN').style.display = 'block';
-
+        // makes the score and name(which is undefined) into an object
         var scoreObject;
         scoreObject = this.add.text(284, 168, '', { fontSize: '24px', fill: '#fff' });
-       
         var name;
+
         // goCondition either says WON!! or LOST!! depending
         scoreObject.setText('score: ' + score + ', name: ' + name)
 
+        // more pop up text
         var formText1;
         formText1 = this.add.text(284, 264, '', { fontSize: '24px', fill: '#fff' });
         formText1.setText('fill out the form on the -->');
@@ -367,6 +370,11 @@ function update ()
         formText2 = this.add.text(284, 296, '', { fontSize: '24px', fill: '#fff' });
         formText2.setText('right to save your score -->');
 
+        // populates the hidden html
+        document.getElementById('nameForm').style.display = 'block';
+        document.getElementById('saveBTN').style.display = 'block';
+
+        // populates the hidden form text
         var titleWord = document.getElementById('title');
         var titleWordTxt = 'Save Stats';
         titleWord.textContent = titleWordTxt;
