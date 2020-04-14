@@ -22,38 +22,45 @@
 
     </head>
     <body id='gameBody'>
-        <h1>Attack of <span id='titleTA'></span></h1>
-        
-        <section id="main-section">
-            <div ><h2 id="title"></h2></div>
-            <div>
-                <p>
-                    <span id='scoreWord'></span>
-                    <span id='gameScore'></span>
-                </p>
-            </div>
-            <article>
-                    <form>
-                        <div id='nameWords'></div><br>
-                        <input type="text" name="Name" class="contact-form" id="nameForm"><br>
-                        <button type="button" id='saveBTN' class="button" onclick="document.location = 'index.html'">Save and Restart Game</button>
-                    </form>
-            </article>
-        </section>
-
-            
-
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-        <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM' crossorigin='anonymous'></script>
-        <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
-        
-         <!--Script App Inserted etc.-->
-        <script src='assets/js/game.js' charset='utf-8'></script>
-        <script src='views.js'></script>
-        
-    </div>
+        <div>
+            <span>
+                <h1>Attack of <span id='titleTA'></span></h1>
+            </span>
+            <span id="main-section" class='row'>
+                <container class='col-sm'>
+                    <div ><h2 id="title"></h2></div>
+                    <span>
+                        <p>
+                            <span id='scoreWord'></span>
+                            <span id='gameScore'></span>
+                        </p>
+                    </span>
+                    <span>
+                        <article>
+                                <form>
+                                    <div id='nameWords'></div><br>
+                                    <input type="text" name="Name" class="contact-form" id="nameForm"><br>
+                                    <button type="button" id='saveBTN' class="button" onclick="document.location = 'index.html'">Save and Restart Game</button>
+                                </form>
+                        </article>
+                    </span>
+                </container>
+            </span>
+            <span class='row'>
+                <container class='col-md'>
+                    <div id='phaserDOM'></div>
+                    <!-- Optional JavaScript -->
+                    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+                    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+                    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM' crossorigin='anonymous'></script>
+                    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+                    
+                    <!--Script App Inserted etc.-->
+                    <script src='assets/js/game.js' charset='utf-8'></script>
+                    <script src='views.js'></script>
+                </container>
+            </span>
+        </div>
     </body>
     
 
