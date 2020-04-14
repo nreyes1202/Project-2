@@ -16,10 +16,11 @@ module.exports = function (app) {
 
   // POST route for saving a new username
   app.post("/api/characters/", function (req, res) {
+    console.log(req.body);
     db.Character.create({
       id: "",
-      username: "Mike",
-      highScore: 230,
+      username: req.body.username,
+      highScore: req.body.score,
       createdAt: "",
       updatedAt: ""
     })
