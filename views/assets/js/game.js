@@ -1,5 +1,6 @@
 // attaching views inorder to get imports
 // const viewsImport = require('.../views');
+// CRUD/post routes
 
 var config = {
     type: Phaser.AUTO,
