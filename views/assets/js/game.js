@@ -2,21 +2,11 @@
 document.getElementById('nameForm').style.display = 'none';
 document.getElementById('saveBTN').style.display = 'none';
 
-
-
 // makes an object out of user Data
 $('#saveBTN').on('click', function (event) {
     event.preventDefault();
 
     var username = $('#nameForm').val().trim();
-
-    // var userData = {
-    //     id: "",
-    //     username: username,
-    //     highScore: score,
-    //     createdAt: "",
-    //     updatedAt: "",
-    // }
 
     $.post("/api/characters", 
     {
@@ -56,6 +46,7 @@ var config = {
     }
 };
 
+// will change the sprite and backgrounds in the future
 // function gameSetup () {
 //     if (userSprite === 'nilsen') {
 //         spriteNilsen();
@@ -92,7 +83,7 @@ var rounds = 1;
 var teacher = '';
 var goCondition = '';
 
-// changes the title
+// changes the title removed for now
 // var titleTA = document.getElementById('titleTA');
 // var titleTAtxt = '?';
 // titleTA.textContent = titleTAtxt;
@@ -109,6 +100,8 @@ var game = new Phaser.Game(config);
 
 // preloads all the images
 function preload() {
+
+    // Will change the sprites and backgrounds in the future
 
     // function backgroundForest() {
     //     this.load.image('background', 'assets/images/backgrounds/magicForestBackground/background.png');
@@ -143,6 +136,9 @@ function preload() {
     // round 1 resources
     this.load.image('background', 'assets/images/backgrounds/parallaxBackground/background.png');
     this.load.image('star', 'assets/images/star.png');
+
+    // a sprite sheet is an array of images 
+    // sprites have defined frame sizes { frameWidth: 230, frameHeight: 398 } at the end
     this.load.image('alien', 'assets/images/sprites/aliensSprite/alien/PNG/spriteSheet.png', { frameWidth: 230, frameHeight: 398 });
 
     // round 2 resources
@@ -187,7 +183,11 @@ function preload() {
 
 // creates most of the game elements
 function create() {
-    // adds in background image
+
+    // images are added based on their center point
+    // location of images is defined on the x and y axis
+
+    // adds in background image (x axis of 480, y axis of 270)
     this.add.image(480, 270, 'background').setScale(.5)
 
     // makes keyboard inputs work
@@ -218,13 +218,15 @@ function create() {
     this.add.image(750, 348, 'cBridgePost').setScale(1);
     this.add.image(750, 284, 'cBridgePost').setScale(1);
 
-    // add sprite
+    // adda sprite, Scale defines how big the image will be
     player = this.physics.add.sprite(400, 270, 'alien').setScale(.3)
 
-    // player colides with world edges
+    // player colides with world edges, bounce defines how it bounces
     player.setCollideWorldBounds(true).setBounce(0.2)
 
     // adds animations for player movements
+    // frames is an array, a sprite sheet is an aray of images
+    // this current sprite sheet only has one image in the array
     this.anims.create({
         key: 'left',
         frames: [{ key: 'alien', frame: 0 }],
@@ -299,8 +301,9 @@ function create() {
     platforms.create(814, 220, 'eTileSq').setScale(1);
     // platforms.create(928, 220, 'eTileBroken').setScale(1);
 
-    //  Some stars to collect, 13 in total, evenly spaced 70 pixels apart along the x axis
-    //  adds top stars
+    //  Some stars to collect, 12 - 13 in total, (repeat: 12) 
+    //  evenly spaced 70 pixels apart along the x axis (stepX: 70)
+    //  adds top stars with the skin defined by "key: 'star'"
     stars1 = this.physics.add.group({
         key: 'star',
         repeat: 12,
@@ -335,15 +338,17 @@ function create() {
     bombs = this.physics.add.group();
 
     // makes objects collide when touching
+    // colider means when touching
     this.physics.add.collider(stars1, platforms);
     this.physics.add.collider(stars2, platforms);
     this.physics.add.collider(bombs, platforms);
 
-    // adds overlap function to collect stars
+    // adds overlap function to collect stars (collectStar1)
+    // overlap means when they overlap
     this.physics.add.overlap(player, stars1, collectStar1, null, this);
     this.physics.add.overlap(player, stars2, collectStar2, null, this);
 
-    // adds overlap function to be killed by bombs
+    // adds overlap function to be killed by bombs (hitBomb)
     this.physics.add.overlap(player, bombs, hitBomb, null, this);
 
 }
@@ -352,7 +357,8 @@ function create() {
 function update() {
 
     if (gameOver) {
-        // sets up pop up variables outside of functions
+
+        // sets up pop up variables
         var popUp;
         popUp = this.add.image(480, 270, 'pop').setScale(1);
 
@@ -362,11 +368,11 @@ function update() {
         popupText1 = this.add.text(358, 216, '', { fontSize: '32px', fill: '#fff' });
         popupText2 = this.add.text(358, 248, '', { fontSize: '32px', fill: '#fff' });
 
-        // goCondition either says WON!! or LOST!! depending
+        // goCondition (game over condition) either says WON!! or LOST!! depending
         popupText1.setText('Game Over you');
         popupText2.setText(goCondition);
 
-        // makes the score and name(which is undefined) into an object
+        // makes the score and name(which is currently undefined) into an object
         var scoreObject;
         scoreObject = this.add.text(410, 168, '', { fontSize: '24px', fill: '#fff' });
         var name;
@@ -383,7 +389,7 @@ function update() {
         formText2 = this.add.text(316, 328, '', { fontSize: '24px', fill: '#fff' });
         formText2.setText('to save your score.');
 
-        // populates the hidden html
+        // populates the hidden html for the form
         document.getElementById('nameForm').style.display = 'block';
         document.getElementById('saveBTN').style.display = 'block';
 
@@ -410,11 +416,11 @@ function update() {
     if (cursors.left.isDown) {
         // moves player left
         player.setVelocityX(-160);
-        // changes player animation
+        // changes player animation as defined by ('left')
         player.anims.play('left', true);
     }
     else if (cursors.right.isDown) {
-        // moves player right
+        // moves player right on the x/y axis
         player.setVelocityX(160);
         // changes player animation
         player.anims.play('right', true);
@@ -448,14 +454,15 @@ function update() {
         roundsText.setText('Round: ' + rounds);
         console.log('Round 2');
 
-        // changes the title text for the round
+        // changes the title text for the round inside of game frame
         var teacher = 'Mike!';
         attackText.setText('Attack of ' + teacher)
 
+        // changes title text at top of html, removed for now
         // var titleTAtxt = ' Mike!';
         // titleTA.textContent = titleTAtxt;
 
-        // loads in new stars with a slime skin
+        // loads in new stars with a slime skin ('slime')
         stars1 = this.physics.add.group({
             key: 'slime',
             repeat: 12,
@@ -488,14 +495,16 @@ function update() {
         // I do not know what this does but is needed here
         var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
-        // makes new monster bomb with a mike skin
+        // makes new monster bomb with a mike skin ('mike')
         var bomb = bombs.create(x, 16, 'mike').setScale(.125);
         bomb.setBounce(1);
         bomb.setCollideWorldBounds(true);
         bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+
+        // removes gravity from bomb
         bomb.allowGravity = false;
 
-        // makes objects collide when touching
+        // makes objects collide when touching i.e. stars collide with platforms etc.
         this.physics.add.collider(stars1, platforms);
         this.physics.add.collider(stars2, platforms);
         this.physics.add.collider(bombs, platforms);
@@ -516,10 +525,11 @@ function update() {
         rounds = 3;
         roundsText.setText('Round: ' + rounds);
 
-        // changes title text
+        // changes title text inside game frame
         var teacher = 'Kurt!';
         attackText.setText('Attack of ' + teacher)
 
+        // changes title text at top of html, removed for now
         // var titleTAtxt = ' Kurt!';
         // titleTA.textContent = titleTAtxt;
 
@@ -582,10 +592,11 @@ function update() {
         rounds = 4;
         roundsText.setText('Round: ' + rounds);
 
-        // changes title text
+        // changes title text inside of game frame
         var teacher = 'Chris!';
         attackText.setText('Attack of ' + teacher)
 
+        // changes title text at top of html, removed for now
         // var titleTAtxt = ' Chris!';
         // titleTA.textContent = titleTAtxt;
 
@@ -642,38 +653,46 @@ function update() {
         // adds colide function to be killed by bombs
         this.physics.add.overlap(player, bombs, hitBomb, null, this);
     }
-    if (score === 1000) {
+    if (score === 1100) {
         // starts game over function when score reaches x
+
+        // stops the physics from moving 
+        // so monsters don't hit you after you won
         this.physics.pause();
 
+        // turns the player green to show he won
         player.setTint(0x00FF00);
 
+        // changes the rounds text
         roundsText.setText('You WIN!!')
 
+        // starts the game over condition
         gameOver = true;
 
+        // changes the pop up text
         goCondition = 'WON!!'
-
     }
 }
 
 
 // defines how the stars function when collected
 function collectStar1(player, star1) {
+
     // makes the stars dissappear
     star1.disableBody(true, true);
 
-    //  Add and update the score
+    //  increases the score when stars are collected
     score += 10;
     scoreText.setText('Score: ' + score);
 
 }
 
 function collectStar2(player, star2) {
+
     // makes the stars dissappear
     star2.disableBody(true, true);
 
-    //  Add and update the score
+    //  increases the score when stars are collected
     score += 10;
     scoreText.setText('Score: ' + score);
 
@@ -681,25 +700,20 @@ function collectStar2(player, star2) {
 
 // defines how the bombs function when hit
 function hitBomb(player, bomb) {
+
     // stops all movement
     this.physics.pause();
 
-    // changes player to red
+    // changes player to red to show he lost
     player.setTint(0xff0000);
 
     // changes player image
     player.anims.play('turn');
 
-    // var scoreObject;
-    // scoreObject = this.add.text(300, 200, '', { fontSize: '24px', fill: '#fff' });
-
-    // var name;
-    // // goCondition either says WON!! or LOST!! depending
-    // scoreObject.setText('score: ' + score + ', name: ' + name)
-
     // sets up game over
     gameOver = true;
 
+    // tells that the game over condition is lost
     goCondition = 'LOST!!'
 }
 
