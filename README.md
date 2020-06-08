@@ -41,9 +41,9 @@ We wanted to allow the player to pick their charector and background, we ran int
 
 ## Authors
 
-* **Nilsen Reyes** - *React Application Building* - [NReyes1202](https://github.com/nreyes1202)
-* **Derrick Hepworth** - *React Application Building* - [DerrickHepworth](https://github.com/derrickhepworth)
-* **Jean Peel** - *Initial work on React Webpage* - [Jean Peel](https://github.com/JeanPeel)
+* **Nilsen Reyes** - *Application Building* - [NReyes1202](https://github.com/nreyes1202)
+* **Derrick Hepworth** - *Application Building* - [DerrickHepworth](https://github.com/derrickhepworth)
+* **Jean Peel** - *Application Building* - [Jean Peel](https://github.com/JeanPeel)
 
 ## Acknowledgments
 
