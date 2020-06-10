@@ -15,19 +15,15 @@ This is a game using Phaser.  The Alien collects stars on the board and tries to
 When each level is cleared new 'stars' or objects appear for you to clear.  The first two 'monsters' are TA's the final 'Boss' is the Teacher Chris.  The player uses arrow keys and the space bar to move the alien around.  At the end of the game the player is prompted to put their name on the score board.  The names and scores are recorded in the database hosted on Heroku.
 
 ## Tech Used
-* React.js
 * Bootstrap
 * Google Fonts
-* Fontawsome
-* Imgur
 * Javascript
-* Heroku
 * CSS
-* Mongoose
-* MongoDB
-* Concurrently
-* React-Router-Dom
-* React-Alert
+* Phaser
+* EJS
+* Express
+* MySq12
+* Sequalize
 
 ## Details of App and Challenges
 
