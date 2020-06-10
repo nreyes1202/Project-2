@@ -18,6 +18,7 @@ When each level is cleared new 'stars' or objects appear for you to clear.  The 
 * Bootstrap
 * Google Fonts
 * Javascript
+* Jquery
 * CSS
 * Phaser
 * EJS
