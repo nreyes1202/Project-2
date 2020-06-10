@@ -56,9 +56,9 @@ We wanted to allow the player to pick their charector and background, we ran int
 
 See also the list of [contributors](https://github.com/nreyes1202/Project-2/graphs/contributors) who participated in this project.
 
-## Link to the Live Project on Heroku Heroku:
+## Link to the Live Project on Heroku Heroku: https://dry-journey-46038.herokuapp.com/
 
-## Link to code repository on GitHub: 
+## Link to code repository on GitHub: https://github.com/nreyes1202/Project-2
 
 ### Prerequisites
 
