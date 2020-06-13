@@ -44,7 +44,7 @@ We wanted to allow the player to pick their charector and background, we ran int
 
 ## Acknowledgments
 
-### Hat tips t0...
+### Hat tips to...
 
 * Jacob Stanger -  *Trouble Shooting Help* - [JCStang](https://github.com/jcstang)
 
